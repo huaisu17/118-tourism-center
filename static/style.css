@@ -137,6 +137,7 @@
 .module_title {
     font-size: .18rem;
     color: #82b2c6;
+    text-shadow: 0 0 10px rgba(0, 102, 204, 0.3);
 }
 
 .weather .head_block .level .air_level {
