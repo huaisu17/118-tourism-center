@@ -1,3 +1,45 @@
+// ============================================
+// 统一图表主题配置
+// ============================================
+const chartTheme = {
+  colors: ['#35d8ff', '#f7c35f', '#ff4757', '#ffa502', '#7be7ff', '#a181fc'],
+  textColor: '#d9f3ff',
+  textDimColor: '#7fa9c9',
+  gridColor: 'rgba(58, 181, 255, 0.1)',
+  borderColor: 'rgba(58, 181, 255, 0.3)',
+  backgroundColor: 'rgba(10, 36, 78, 0.3)',
+};
+
+// 通用坐标轴配置
+const commonAxisConfig = {
+  axisLine: {
+    lineStyle: {
+      color: chartTheme.borderColor,
+    }
+  },
+  axisLabel: {
+    textStyle: {
+      color: chartTheme.textDimColor,
+      fontSize: 12,
+    }
+  },
+  splitLine: {
+    lineStyle: {
+      color: chartTheme.gridColor,
+    }
+  }
+};
+
+// 通用 tooltip 配置
+const commonTooltip = {
+  trigger: 'axis',
+  backgroundColor: 'rgba(4, 16, 30, 0.9)',
+  borderColor: chartTheme.borderColor,
+  textStyle: {
+    color: chartTheme.textColor,
+  }
+};
+
 function pieChart(data) {
     var data = data
     var titleArr = [], seriesArr = [];
@@ -80,9 +122,9 @@ function pieChart(data) {
 function barChart(data) {
     return {
         tooltip: {
-            trigger: 'axis',
-            axisPointer: { // 坐标轴指示器，坐标轴触发有效
-                type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+            ...commonTooltip,
+            axisPointer: {
+                type: 'shadow'
             }
         },
         grid: {
@@ -97,44 +139,34 @@ function barChart(data) {
             right: '2%',
             top: '-4%',
             textStyle: {
-                color: "#fff"
+                color: chartTheme.textColor
             },
             itemWidth: 12,
             itemHeight: 10,
-            // itemGap: 35
         },
         xAxis: {
             type: 'category',
             data: data.xAxis,
+            ...commonAxisConfig,
             axisLine: {
-                show: false,
+                show: true,
                 lineStyle: {
-                    color: 'white'
-
-                }
-            },
-            axisLabel: {
-                textStyle: {
-                    fontFamily: 'Microsoft YaHei'
+                    color: chartTheme.borderColor
                 }
             },
         },
-
         yAxis: {
             type: 'value',
+            ...commonAxisConfig,
             axisLine: {
                 show: false,
-                lineStyle: {
-                    color: 'white'
-                }
             },
             splitLine: {
-                show: false,
+                show: true,
                 lineStyle: {
-                    color: 'rgba(255,255,255,0.3)'
+                    color: chartTheme.gridColor,
                 }
             },
-            axisLabel: {}
         },
         series: [{
             name: data.legend[0],
@@ -144,12 +176,12 @@ function barChart(data) {
                 normal: {
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                         offset: 0,
-                        color: '#fccb05'
+                        color: '#35d8ff'
                     }, {
                         offset: 1,
-                        color: '#f5804d'
+                        color: '#0096f3'
                     }]),
-                    barBorderRadius: 12,
+                    barBorderRadius: 4,
                 },
             },
             data: data.data[0]
@@ -162,14 +194,13 @@ function barChart(data) {
                 normal: {
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                         offset: 0,
-                        color: '#8bd46e'
+                        color: '#f7c35f'
                     }, {
                         offset: 1,
-                        color: '#09bcb7'
+                        color: '#ffa502'
                     }]),
-                    barBorderRadius: 11,
+                    barBorderRadius: 4,
                 }
-
             },
             data: data.data[1]
         }]
@@ -315,24 +346,24 @@ function consumptionChart(data) {
     var echartData = data
     var rich = {
         yellow: {
-            color: "#ffc72b",
+            color: chartTheme.colors[1],
             fontSize: 30 * scale,
             padding: [5, 4],
             align: 'center'
         },
         total: {
-            color: "#ffc72b",
+            color: chartTheme.colors[1],
             fontSize: 40 * scale,
             align: 'center'
         },
         white: {
-            color: "#fff",
+            color: chartTheme.textColor,
             align: 'center',
             fontSize: 14 * scale,
             padding: [21, 0]
         },
         blue: {
-            color: '#49dff0',
+            color: chartTheme.colors[0],
             fontSize: 16 * scale,
             align: 'center'
         },
@@ -343,29 +374,24 @@ function consumptionChart(data) {
             height: 0,
         }
     }
-    var color = ['#c487ee', '#deb140', '#49dff0', '#034079', '#6f81da', '#00ffb4']
     return {
         tooltip: {
             trigger: 'item',
-
+            backgroundColor: 'rgba(4, 16, 30, 0.9)',
+            borderColor: chartTheme.borderColor,
+            textStyle: {
+                color: chartTheme.textColor,
+            }
         },
         legend: {
             selectedMode: false,
-            formatter: function (name) {
-                // var total = 0; 
-                // var averagePercent;
-                // echartData.forEach(function(value, index, array) {
-                //     total += value.value;
-                // });
-                // return '{total|' + total + '}';
-            },
             data: [echartData[0].name],
             left: 'center',
             top: 'center',
             icon: 'none',
             align: 'center',
             textStyle: {
-                color: "#fff",
+                color: chartTheme.textColor,
                 fontSize: 13,
                 rich: rich
             },
@@ -375,12 +401,12 @@ function consumptionChart(data) {
             type: 'pie',
             radius: ['42%', '50%'],
             hoverAnimation: false,
-            color: ['#c487ee', '#deb140', '#49dff0', '#034079', '#6f81da', '#00ffb4'],
+            color: chartTheme.colors,
             label: {
                 normal: {
                     formatter: function (params, ticket, callback) {
                         var total = 0;
-                        var percent = 0; //消费占比
+                        var percent = 0;
                         echartData.forEach(function (value, index, array) {
                             total += value.value;
                         });
@@ -398,7 +424,7 @@ function consumptionChart(data) {
                     length: 14,
                     length2: 3,
                     lineStyle: {
-                        color: '#fff'
+                        color: chartTheme.borderColor
                     }
                 }
             },
@@ -417,75 +443,58 @@ function lineChart(data) {
 
     return {
         tooltip: {
-            show: true,
-            trigger: 'item'
+            ...commonTooltip,
+            trigger: 'axis'
         },
         grid: {
             borderWidth: 0,
             top: '10%',
             bottom: '30%',
             textStyle: {
-                color: "#fff"
+                color: chartTheme.textColor
             }
         },
         legend: {
             x: '46%',
             top: '0%',
             textStyle: {
-                color: '#90979c',
+                color: chartTheme.textDimColor,
             },
             data: data.legend
         },
-
-
         calculable: true,
         xAxis: [{
             type: "category",
-            axisLine: {
-                lineStyle: {
-                    color: "rgba(204,187,225,0.5)",
-                }
-            },
-            splitLine: {
-                show: false
-            },
-            axisTick: {
-                show: false
-            },
+            ...commonAxisConfig,
             data: xData,
         }],
-
         yAxis: [{
             type: "value",
+            ...commonAxisConfig,
             splitLine: {
-                show: false
-            },
-            axisLine: {
+                show: true,
                 lineStyle: {
-                    color: "rgba(204,187,225,0.5)",
+                    color: chartTheme.gridColor,
                 }
             },
-
         }],
         dataZoom: [{
             show: true,
             height: 10,
             xAxisIndex: [0],
             bottom: '10%',
-
             "start": 0,
             "end": 70,
             handleIcon: 'path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z',
             handleSize: '110%',
             handleStyle: {
-                color: "#5B3AAE",
+                color: chartTheme.colors[0],
             },
             textStyle: {
-                color: "rgba(204,187,225,0.5)",
+                color: chartTheme.textDimColor,
             },
-            fillerColor: "rgba(67,55,160,0.4)",
-            borderColor: "rgba(204,187,225,0.5)",
-
+            fillerColor: "rgba(53, 216, 255, 0.2)",
+            borderColor: chartTheme.borderColor,
         }, {
             type: "inside",
             show: true,
