@@ -190,9 +190,11 @@
 
 .weather .middle_block .win_wrap,
 .weather .middle_block .meter {
-    background: rgba(22, 43, 88, .5);
-    border: solid 1px #82b2c6;
+    background: rgba(0, 102, 204, 0.15);
+    border: solid 1px #0066cc;
     padding: .04rem .12rem;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 102, 204, 0.2);
 }
 
 .weather .middle_block .win_wrap span,
@@ -208,14 +210,16 @@
 }
 
 .weather .foot_block .foot_item {
-    background: rgba(22, 43, 88, .5);
-    border: solid 1px #82b2c6;
+    background: rgba(0, 102, 204, 0.15);
+    border: solid 1px #0066cc;
     flex: 1;
     margin-right: .05rem;
     text-align: center;
     display: flex;
     flex-flow: column;
     justify-content: space-around;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 102, 204, 0.2);
 }
 
 .weather .foot_block .foot_item {
