@@ -344,6 +344,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .chart_wrap.map_wrap .map_box {
@@ -442,8 +443,9 @@
     }
 }
 .chart_wrap.map_wrap img {
-    max-height: calc((100vh - 58px - 24%) * .9);
-    max-width: 100%;
+    max-height: 90%;
+    max-width: 90%;
+    object-fit: contain;
 }
 
 .tourists .chart_wrap {
