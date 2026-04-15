@@ -12,54 +12,54 @@
 
 <div class="dashboard">
     <!-- 顶部标题栏 -->
-    <header class=”topbar”>
-        <div class=”topbar-left”>
-            <div class=”date”>2024-05-21 09:59:20</div>
-            <div class=”week”>星期五</div>
+    <header class="topbar">
+        <div class="topbar-left">
+            <div class="date">2024-05-21 09:59:20</div>
+            <div class="week">星期五</div>
         </div>
-        <div class=”topbar-center”>
-            <h1 class=”title”>云南全域智慧旅游智慧中心</h1>
+        <div class="topbar-center">
+            <h1 class="title">云南全域智慧旅游智慧中心</h1>
         </div>
-        <div class=”topbar-right”>
-            <p class=”notice”>实时数据监控</p>
+        <div class="topbar-right">
+            <p class="notice">实时数据监控</p>
         </div>
     </header>
 
     <!-- 主屏幕区域 -->
-    <main class=”screen”>
+    <main class="screen">
         <!-- 左侧面板 -->
-        <section class=”panel panel-left”>
+        <section class="panel panel-left">
             <!-- 天气卡片 -->
-            <div class=”card weather”>
-                <div class=”card-title”>气象环境</div>
-                <div class=”card-content”>
-                    <div class=”head_block”>
-                        <p class=”level”>空气质量：<span class=”air_level”>优</span></p>
-                        <p class=”time”><span class=”updata_time”></span>更新</p>
+            <div class="card weather">
+                <div class="card-title">气象环境</div>
+                <div class="card-content">
+                    <div class="head_block">
+                        <p class="level">空气质量：<span class="air_level">优</span></p>
+                        <p class="time"><span class="updata_time"></span>更新</p>
                     </div>
-                    <div class=”middle_block”>
-                        <div class=”tem_wrap”>
-                            <span class=”tem”>22</span><sup>°</sup>
-                            <sub class=”wea”>晴朗</sub>
+                    <div class="middle_block">
+                        <div class="tem_wrap">
+                            <span class="tem">22</span><sup>°</sup>
+                            <sub class="wea">晴朗</sub>
                         </div>
-                        <div class=”win_wrap”>风向<span class=”win”>东</span></div>
-                        <div class=”meter”>风速 <span class=”win_meter”>20</span></div>
+                        <div class="win_wrap">风向<span class="win">东</span></div>
+                        <div class="meter">风速 <span class="win_meter">20</span></div>
                     </div>
-                    <div class=”foot_block”>
-                        <div class=”foot_item”>
-                            <p class=”title”>湿度</p>
-                            <p class=”humidity”>适宜</p>
+                    <div class="foot_block">
+                        <div class="foot_item">
+                            <p class="title">湿度</p>
+                            <p class="humidity">适宜</p>
                         </div>
-                        <div class=”foot_item”>
-                            <p class=”title”>PM2.5</p>
-                            <p class=”air_pm25”>80</p>
+                        <div class="foot_item">
+                            <p class="title">PM2.5</p>
+                            <p class="air_pm25">80</p>
                         </div>
-                        <div class=”foot_item”>
-                            <p class=”title”>负氧离子</p>
+                        <div class="foot_item">
+                            <p class="title">负氧离子</p>
                             <p>3109/cm³</p>
                         </div>
-                        <div class=”foot_item”>
-                            <p class=”title”>噪声</p>
+                        <div class="foot_item">
+                            <p class="title">噪声</p>
                             <p>56.6dB</p>
                         </div>
                     </div>
@@ -67,89 +67,89 @@
             </div>
 
             <!-- 实时游客流量 -->
-            <div class=”card chartWrap tourists_flow”>
-                <div class=”card-title”>实时游客流量 <span class=”unit”>单位：人</span></div>
-                <div class=”card-content chart_wrap” id=”touristsFlowChart”></div>
+            <div class="card chartWrap tourists_flow">
+                <div class="card-title">实时游客流量 <span class="unit">单位：人</span></div>
+                <div class="card-content chart_wrap" id="touristsFlowChart"></div>
             </div>
 
             <!-- 实时车流量 -->
-            <div class=”card chartWrap car_flow”>
-                <div class=”card-title”>实时车流量</div>
-                <div class=”card-content chart_wrap” id=”carFlowChart”></div>
+            <div class="card chartWrap car_flow">
+                <div class="card-title">实时车流量</div>
+                <div class="card-content chart_wrap" id="carFlowChart"></div>
             </div>
 
             <!-- 游客满意度 -->
-            <div class=”card satisfaction”>
-                <div class=”card-title”>游客满意度</div>
-                <div class=”card-content”></div>
+            <div class="card satisfaction">
+                <div class="card-title">游客满意度</div>
+                <div class="card-content"></div>
             </div>
 
             <!-- 实时游客总数 -->
-            <div class=”card chartWrap totalPeopleNum”>
-                <div class=”card-title”>游客总数 <span class=”num”>28567人</span></div>
-                <div class=”card-content chart_wrap” id=”totalPeopleChart”></div>
+            <div class="card chartWrap totalPeopleNum">
+                <div class="card-title">游客总数 <span class="num">28567人</span></div>
+                <div class="card-content chart_wrap" id="totalPeopleChart"></div>
             </div>
 
             <!-- 今日累计车流量 -->
-            <div class=”card totalCarFlow”>
-                <div class=”card-title”>今日累计车流</div>
-                <div class=”card-content chart_wrap” id=”totalCarFlow”>
-                    <div class=”car_item”>
-                        <img src=”./static/car.png” alt=””>
+            <div class="card totalCarFlow">
+                <div class="card-title">今日累计车流</div>
+                <div class="card-content chart_wrap" id="totalCarFlow">
+                    <div class="car_item">
+                        <img src="./static/car.png" alt="">
                         <p>今日到访</p>
-                        <p class=”visiting num”>333</p>
+                        <p class="visiting num">333</p>
                     </div>
-                    <div class=”car_item back_wrap”>
-                        <img src=”./static/car1.png” alt=””>
+                    <div class="car_item back_wrap">
+                        <img src="./static/car1.png" alt="">
                         <p>今日返程</p>
-                        <p class=”back num”>303</p>
+                        <p class="back num">303</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 中间舞台区域 -->
-        <section class=”stage”>
-            <div class=”card map-card chartWrap”>
-                <div class=”card-title”>旅游景区分布</div>
-                <div class=”card-content map_wrap”>
-                    <div class=”map_box”>
-                        <img id=”map” src=”./static/map.jpg” alt=””>
-                        <div class=”city city1 red”>
-                            <div class=”dotted”>858</div>
-                            <div class=”pulse1”></div>
-                            <div class=”pulse2”></div>
-                            <div class=”pulse3”></div>
+        <section class="stage">
+            <div class="card map-card chartWrap">
+                <div class="card-title">旅游景区分布</div>
+                <div class="card-content map_wrap">
+                    <div class="map_box">
+                        <img id="map" src="./static/map.jpg" alt="">
+                        <div class="city city1 red">
+                            <div class="dotted">858</div>
+                            <div class="pulse1"></div>
+                            <div class="pulse2"></div>
+                            <div class="pulse3"></div>
                         </div>
-                        <div class=”city city2 orange”>
-                            <div class=”dotted”>425</div>
-                            <div class=”pulse1”></div>
-                            <div class=”pulse2”></div>
-                            <div class=”pulse3”></div>
+                        <div class="city city2 orange">
+                            <div class="dotted">425</div>
+                            <div class="pulse1"></div>
+                            <div class="pulse2"></div>
+                            <div class="pulse3"></div>
                         </div>
-                        <div class=”city city3”>
-                            <div class=”dotted”>362</div>
-                            <div class=”pulse1”></div>
-                            <div class=”pulse2”></div>
-                            <div class=”pulse3”></div>
+                        <div class="city city3">
+                            <div class="dotted">362</div>
+                            <div class="pulse1"></div>
+                            <div class="pulse2"></div>
+                            <div class="pulse3"></div>
                         </div>
-                        <div class=”city city4 orange”>
-                            <div class=”dotted”>245</div>
-                            <div class=”pulse1”></div>
-                            <div class=”pulse2”></div>
-                            <div class=”pulse3”></div>
+                        <div class="city city4 orange">
+                            <div class="dotted">245</div>
+                            <div class="pulse1"></div>
+                            <div class="pulse2"></div>
+                            <div class="pulse3"></div>
                         </div>
-                        <div class=”city city5”>
-                            <div class=”dotted”>88</div>
-                            <div class=”pulse1”>10</div>
-                            <div class=”pulse2”></div>
-                            <div class=”pulse3”></div>
+                        <div class="city city5">
+                            <div class="dotted">88</div>
+                            <div class="pulse1">10</div>
+                            <div class="pulse2"></div>
+                            <div class="pulse3"></div>
                         </div>
                     </div>
-                    <div class=”legend”>
-                        <span class=”legend-title”>拥挤程度</span>
-                        <p class=”colorBar”></p>
-                        <p class=”text”>
+                    <div class="legend">
+                        <span class="legend-title">拥挤程度</span>
+                        <p class="colorBar"></p>
+                        <p class="text">
                             <span>空闲</span>
                             <span>拥挤</span>
                             <span>爆满</span>
@@ -160,30 +160,30 @@
         </section>
 
         <!-- 右侧面板 -->
-        <section class=”panel panel-right”>
+        <section class="panel panel-right">
             <!-- 停车场数据 -->
-            <div class=”card chartWrap”>
-                <div class=”card-title”>停车场数据</div>
-                <div class=”card-content chart_wrap” id=”carSpaceNum”></div>
+            <div class="card chartWrap">
+                <div class="card-title">停车场数据</div>
+                <div class="card-content chart_wrap" id="carSpaceNum"></div>
             </div>
 
             <!-- 游客消费占比 -->
-            <div class=”card chartWrap”>
-                <div class=”card-title”>游客消费占比</div>
-                <div class=”card-content chart_wrap” id=”consumptionChart”></div>
+            <div class="card chartWrap">
+                <div class="card-title">游客消费占比</div>
+                <div class="card-content chart_wrap" id="consumptionChart"></div>
             </div>
 
             <!-- 景区门票销量 -->
-            <div class=”card chartWrap”>
-                <div class=”card-title”>景区门票销量</div>
-                <div class=”card-content chart_wrap” id=”ticketsChart”></div>
+            <div class="card chartWrap">
+                <div class="card-title">景区门票销量</div>
+                <div class="card-content chart_wrap" id="ticketsChart"></div>
             </div>
 
             <!-- 游客趋势分析 -->
-            <div class=”card tourists chartWrap”>
-                <div class=”card-title”>游客趋势分析 <span class=”unit”>游客人数：人</span></div>
-                <div class=”card-content chart_wrap”>
-                    <ul class=”table_head”>
+            <div class="card tourists chartWrap">
+                <div class="card-title">游客趋势分析 <span class="unit">游客人数：人</span></div>
+                <div class="card-content chart_wrap">
+                    <ul class="table_head">
                         <li>
                             <span></span>
                             <span>斑竹山</span>
@@ -193,8 +193,8 @@
                             <span>杨岐山普通寺</span>
                         </li>
                     </ul>
-                    <ul class=”table_body”>
-                        <li class=”tr_item”>
+                    <ul class="table_body">
+                        <li class="tr_item">
                             <span>昨日</span>
                             <span>1246</span>
                             <span>2246</span>
@@ -202,7 +202,7 @@
                             <span>2246</span>
                             <span>2460</span>
                         </li>
-                        <li class=”tr_item”>
+                        <li class="tr_item">
                             <span>今日</span>
                             <span>246</span>
                             <span>246</span>
@@ -210,7 +210,7 @@
                             <span>246</span>
                             <span>246</span>
                         </li>
-                        <li class=”tr_item”>
+                        <li class="tr_item">
                             <span>最近7日</span>
                             <span>246</span>
                             <span>246</span>
@@ -218,7 +218,7 @@
                             <span>246</span>
                             <span>246</span>
                         </li>
-                        <li class=”tr_item”>
+                        <li class="tr_item">
                             <span>最近30日</span>
                             <span>246</span>
                             <span>246</span>
@@ -231,9 +231,9 @@
             </div>
 
             <!-- 12301呼叫 -->
-            <div class=”card chartWrap”>
-                <div class=”card-title”>12301呼叫</div>
-                <div class=”card-content chart_wrap” id=”helpCellChart”></div>
+            <div class="card chartWrap">
+                <div class="card-title">12301呼叫</div>
+                <div class="card-content chart_wrap" id="helpCellChart"></div>
             </div>
         </section>
     </main>
