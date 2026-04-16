@@ -45,10 +45,10 @@ html{width:3840px;height:2160px;}
 #body{ margin-top: 20px; height:1132px; }
 #body>div{ float:left; height:100%; }
 /*主体左边区域*/
-.bodyLeft{ width:1265px; margin-left: 20px;}
+.bodyLeft{ width:1265px; margin-left: 20px; display:flex; flex-direction:column;}
 
 /*各区域挂牌数量*/
-.bodyLeftTop{ width:1265px; height:548px; position: relative;}
+.bodyLeftTop{ width:1265px; height:548px; position: relative; order:2;}
 .dataCenter{width:700px;height:80px;background: rgb(0,102,255,0.3);margin-top:30px;margin-left: 8px;}
 .dataCenter li{float:left;width:25%;height:80px;text-align: center;padding-top: 10px;}
 .dataCenter span{font-size:34px;color:#FFF600;font-family: "黑体";}
@@ -65,7 +65,7 @@ html{width:3840px;height:2160px;}
 #left-top-right p{float:right;display:inline-block;height:28px;line-height:28px; margin-top:5px;margin-right:20px;font:bold 17px "simhei";color:#fff;}
 #left-top-right span{float: right;width:50px;font-size:27px;color:#F3F120;padding-left: 20px;margin-top: -6px;}
 /*当前成交总数和月成交总数*/
-.bodyLeftBottom{ width:1265px;height:550px; margin-top: 23px;}
+.bodyLeftBottom{ width:1265px;height:550px; margin-top: 0; margin-bottom: 23px; order:1;}
 .bodyLeftBottomLeft,.bodyLeftBottomRight{ float:left;width:50%;height:100%;}
 #left-bottom{width: 730px;height: 520px;margin-top: 50px; margin-left:-100px;}
 .bodyLeftBottomRight .t-right{width:652px;height:552px;float:left;}
