@@ -96,7 +96,7 @@ for (var i = 0; i < 13; i++) {
 };
 //时间刻度
 for (var i = 0; i < 13; i++) {
-	$(".kedu").find("ul").html(function(index, html) {
+	$(".kedu").html(function(index, html) {
 		return html += `<li></li>`
 	})
 };
@@ -1157,8 +1157,9 @@ function guapaizhanbi(obj, Index) {
 
 	// 1-4月份办理总数
 	let mothnumber = [4536, 2030, 4872, 4931, 4980, 4500]; //每月办理数数据接口
+	var cpWidth = $("#cp").find("div").eq(0).width() || 450;
 	for (let i = 0; i < mothnumber.length; i++) {
-		$("#cp").find("p").eq(i).width(450 * (mothnumber[i] / 5000));
+		$("#cp").find("p").eq(i).width(cpWidth * (mothnumber[i] / 5000));
 		$("#cp").find("p").eq(i).find("span").text(mothnumber[i]);
 	}
 	// 五月份办理总数
@@ -1166,7 +1167,7 @@ function guapaizhanbi(obj, Index) {
 	//自动播放效果展示，数据实时对接后删除
 	setInterval(function() {
 		six += 1;
-		$("#cp").find("p").eq(5).width(450 * (4500 / 5000));
+		$("#cp").find("p").eq(5).width(cpWidth * (4500 / 5000));
 		$("#cp").find("p").eq(5).find("span").text(six);
 	}, 20000)
 }());
@@ -1863,8 +1864,10 @@ function guapaizhanbi(obj, Index) {
 	myChart.setOption(option);
 	var W = 0;
 	var H = 0;
+	var keduWidth = $("#timebar .kedu").width() || 780;
+	var keduStep = keduWidth / 12;
 	$(".kedu").find("li").each(function(i) {
-		$(this).css("left", i * 13)
+		$(this).css("left", i * keduStep)
 	})
 	setInterval(function() {
 		option.series[0].data[0] = Math.round(Math.random() * 1000)
@@ -1874,14 +1877,17 @@ function guapaizhanbi(obj, Index) {
 		option.series[0].data[4] = Math.round(Math.random() * 1000)
 		option.series[0].data[5] = Math.round(Math.random() * 1000)
 		option.series[0].data[6] = Math.round(Math.random() * 1000)
-		W = Math.round(Math.random() * 10) * 78;
-		H = W / 13;
-		if (H < 8) {
+		keduWidth = $("#timebar .kuang").width() || keduWidth;
+		keduStep = keduWidth / 10;
+		W = Math.round(Math.random() * 10) * keduStep;
+		W = Math.max(40, Math.min(W, keduWidth - 40));
+		H = Math.round(W / (keduWidth / 12 || 1));
+		if (H < 3) {
 			$("#pjtime").css({
 				"left": W,
 				"margin-left": -50
 			})
-		} else if (H > 52) {
+		} else if (H > 9) {
 			$("#pjtime").css({
 				"left": W,
 				"margin-left": -250
