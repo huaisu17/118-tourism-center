@@ -49,6 +49,7 @@ html{width:3840px;height:2160px;}
 
 /*各区域挂牌数量*/
 .bodyLeftTop{ width:1265px; height:548px; position: relative; order:2;}
+.bodyLeftTop.bodyLeftTopJiage #jiage{position:absolute;left:0;bottom:0;width:100%;height:88%;}
 .dataCenter{width:700px;height:80px;background: rgb(0,102,255,0.3);margin-top:30px;margin-left: 8px;}
 .dataCenter li{float:left;width:25%;height:80px;text-align: center;padding-top: 10px;}
 .dataCenter span{font-size:34px;color:#FFF600;font-family: "黑体";}
@@ -153,6 +154,8 @@ text{ font-size:18px; display:inline-block;}
 .footparent2{margin-right:42px;}
 .footparent3{margin-right:0;}
 .footChild{ overflow: hidden; position: relative;  width:912px;height:705px;}
+.footChild.footChildGuapai{overflow:hidden;}
+.footChild.footChildGuapai .bodyLeftTop{width:1265px;height:548px;transform:scale(0.72);transform-origin:left top;order:initial;}
 /*挂牌会员实时监控*/
 .huiYuanLst{ position: relative;width:50%;height:50%;float: left;}
 .huiYuanLst:last-child{ top: -15px; }
