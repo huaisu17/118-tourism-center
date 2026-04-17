@@ -68,8 +68,8 @@
 				<div class="animate3"></div>
 			</div>
 		</div>
-		<!-- 底层背景动画-开始 -->
-		<!-- 显示屏头部开始 -->
+		<!-- 底层背景动画-结束 -->
+		<!-- 显示屏头部-开始 -->
 		<div id="head">
 			<!-- 时间日期 -->
 			<div class="getDate">
@@ -87,115 +87,69 @@
 			<!-- 大标题 -->
 			<h1> 智联数据综合展示中心 </h1>
 		</div>
-		<!-- 显示屏头部结束 -->	
-		<!-- 显示屏中间-开始-->
+		<!-- 显示屏头部-结束 -->	
+		<!-- 显示屏中间-开始 -->
 		<div id="body">
 			<div class="bodyLeft rel">
+				<!-- 日管控情况汇总 / 采购总成本分析 -->
 				<div class="bodyLeftTop">
-					<div class="childtitle"><h2>数据统计分析</h2></div>
+					<div class="childtitle"><h2>日管控情况汇总</h2></div>
 					<div class="add" onclick="Show(this,'bodyLeft',2.8,'before')">+</div>
 					<!-- 数据中心-开始 -->
 					<div class="dataCenter clear"><ul class="Data"></ul></div>
-					<!-- 数据中心-开始 -->
+					<!-- 数据中心-结束 -->
 					<div id="guapai" class="guapai"></div>
-					<!-- 产品挂牌实时监控-开始 -->
+					<!-- 采购总成本环图-开始 -->
 					<div class="yuyue">
 						<div class="yuyuejiankong">
-							<div class="childtitle leftTopCircleTitle"><h2>交割环比分析</h2></div>
+							<div class="childtitle leftTopCircleTitle"><h2>采购总成本分析</h2></div>
 							<div id="left-top-right-circle" class="left-top-right-circle"></div>
 						</div>
 					</div>
-					<!-- 产品挂牌实时监控-结束 -->
+					<!-- 采购总成本环图-结束 -->
 				</div>
 				<div class="bodyLeftBottom rel">
+					<!-- 膳食经费数据分析 / 订餐数据分析 -->
 					<div class="add" onclick="Show(this,'bodyLeft',2.8,'after')">+</div>
 					<div class="bodyLeftBottomLeft">
-						<div class="childtitle"><h2>数据趋势分析</h2></div>
+						<div class="childtitle"><h2>膳食经费数据分析</h2></div>
 						<div id="left-bottom"></div>
 					</div>
-					<!-- 月成交量-开始 -->
+					<!-- 订餐数据分析-开始 -->
 					<div class="bodyLeftBottomRight rel">
-						<div class="childtitle"><h2>月度数据对比</h2></div>
+						<div class="childtitle"><h2>订餐数据分析</h2></div>
 						<div class="t-right" >
 							<ul id="cp">
 								<li class="line"></li>
 								<li>
-									<span>一月</span>
+									<span>01县</span>
 									<div>
 										<p><i></i><span></span></p>
 									</div>
 								</li>
 								<li>
-									<span>二月</span>
+									<span>02县</span>
 									<div>
 										<p><i></i><span></span></p>
 									</div>
 								</li>
 
 								<li>
-									<span>三月</span>
+									<span>03县</span>
 									<div>
 										<p><i></i><span></span></p>
 									</div>
 								</li>
 								<li>
-									<span>四月</span>
+									<span>04县</span>
 									<div>
 										<p><i></i><span></span></p>
 									</div>
 								</li>
-								<li>
-									<span>五月</span>
-									<div>
-										<p><i></i><span></span></p>
-									</div>
-								</li>
-								<li>
-									<span>六月</span>
-									<div>
-										<p><i></i><span></span></p>
-									</div>
-								</li>
-								<li>
-									<span>七月</span>
-									<div>
-										<p class="active"><i></i><span></span></p>
-									</div>
-								</li>
-								<li>
-									<span>八月</span>
-									<div>
-										<p><i></i><span></span></p>
-									</div>
-								</li>
-								<li>
-									<span>九月</span>
-									<div>
-										<p><i></i><span></span></p>
-									</div>
-								</li>
-								<li>
-									<span>十月</span>
-									<div>
-										<p><i></i><span></span></p>
-									</div>
-								</li>	
-								<li>
-									<span>十一月</span>
-									<div>
-										<p><i></i><span></span></p>
-									</div>
-								</li>
-								<li>
-									<span>十二月</span>
-									<div>
-										<p><i></i><span></span></p>
-									</div>
-								</li>	
 							</ul>
 						</div>						
 					</div>
-					<!-- 月成交量-结束 -->
+					<!-- 订餐数据分析-结束 -->
 				</div>
 			</div>
 			<div class="bodyMiddle rel">
@@ -207,11 +161,11 @@
 						<span>北海区域</span>
 						<span>大盘走势</span>
 					</div>
-					<!-- 分布区域-开始 -->
+					<!-- 区域分布-开始 -->
 					<div class="mapmain">
-						<!-- 牧草产能区域分布数据-开始 -->
+						<!-- 区域分布列表-开始 -->
 						<div><ul id="list"></ul></div>
-						<!-- 牧草产能区域分布数据-开始 -->
+						<!-- 区域分布列表-结束 -->
 						<!-- 中国地图-开始 -->
 						<div class="map" id="map"></div>
 						<!-- 中国地图-结束 -->
@@ -222,23 +176,24 @@
 						<div class="map" id="map2"></div>
 						<!-- 大盘走势-结束 -->
 					</div>
-					<!-- 分布区域-结束 -->
-					<!-- 地图下面亮光动画-开始 -->
+					<!-- 区域分布-结束 -->
+					<!-- 地图下方亮光动画-开始 -->
 					<div id="sun"></div>
-					<!-- 地图下面亮光动画-结束 -->
+					<!-- 地图下方亮光动画-结束 -->
 				</div>
 			</div>
 			<div class="bodyRight">
-				<!-- 成交量实时动态滚动-开始 -->
+				<!-- 食材单价波动分析 / 学生营养情况分析 -->
+				<!-- 右上双图区域-开始 -->
 				<div class="bodyRightTop rel">
 					<div class="add" onclick="Show(this,'bodyRight',2.8,'before')">+</div>
 					<div class="bodyRightTopBG">
 						<div class="rightTopPanel rightTopChartPanel">
-							<div class="childtitle"><h2>游客趋势</h2></div>
+							<div class="childtitle"><h2>食材单价波动分析</h2></div>
 							<div id="right-top-bottom"></div>
 						</div>
 						<div class="rightTopPanel rightTopComparePanel rel">
-							<div class="childtitle"><h2>景点热度排行</h2></div>
+							<div class="childtitle"><h2>学生营养情况分析</h2></div>
 							<div class="t-right" >
 								<ul id="cp-right">
 									<li class="line"></li>
@@ -320,14 +275,15 @@
 						</div>
 					</div>					
 				</div>
-				<!-- 成交量实时动态滚动-结束 -->
-				<!-- 挂牌产品价格动态折线图-开始 -->
+				<!-- 右上双图区域-结束 -->
+				<!-- 右下双图区域-开始 -->
 				<div class="bodyRightBottom rel">
-					<div class="childtitle"><h2>数据变化趋势</h2></div>
+					<!-- 供应商评分分析 / 月调度情况汇总 -->
+					<div class="childtitle"><h2>供应商评分分析</h2></div>
 					<div class="rightBottomRingChartWrap">
 						<div id="right-bottom-ring-chart"></div>
 					</div>
-					<div class="rightBottomSectionTitle"><h2>入驻动态</h2></div>
+					<div class="rightBottomSectionTitle"><h2>月调度情况汇总</h2></div>
 					<div class="rightBottomRuzhu">
 						<div class="contgundong">
 							<ul class="moveul"></ul>
@@ -335,120 +291,124 @@
 					</div>
 					<div class="add" onclick="Show(this,'bodyRight',2.8,'after')">+</div>	
 				</div>
-				<!-- 挂牌产品价格动态折线图-结束 -->
+				<!-- 右下双图区域-结束 -->
 			</div>
 		</div>
 		<!-- 显示屏中间-结束 -->
-		<!-- 显示屏底部-开始-->		
+		<!-- 显示屏底部-开始 -->		
 		<div id="foot">
-			<!-- 挂牌会员实时监控-开始 -->
+			<!-- 周排查情况汇总-开始 -->
 			<div class="footparent0">
+				<!-- 周排查情况汇总 -->
 				<div class="footChild">
-					<div class="childtitle"><h2>用户行为分析</h2></div>
+					<div class="childtitle"><h2>周排查情况汇总</h2></div>
 					<div class="add" onclick="Show(this,'footparent0',2.8,'after')">+</div>
-					<!-- 今日入驻申请会员数量-开始 -->
+					<!-- 指标卡1-开始 -->
 					<div class="huiYuanLst">
 						<div class="yibiao" id="yibiao1"></div>	
 						<div class="huiyuan">
 							<ul  class="fangkuai"></ul>
 							<span></span>
-							<p>今日入驻申请会员数量</p>
+							<p>总计排查单位</p>
 						</div>
 					</div>
-					<!-- 今日入驻申请会员数量-结束 -->
-					<!-- 今日入驻会员数量-开始 -->
+					<!-- 指标卡1-结束 -->
+					<!-- 指标卡2-开始 -->
 					<div class="huiYuanLst">
 						<div class="yibiao" id="yibiao4"></div>	
 						<div class="huiyuan">
 							<ul class="fangkuai"></ul>
 							<span></span>
-							<p>今日入驻会员数量</p>
+							<p>合格单位</p>
 						</div>
 					</div>
-					<!-- 今日入驻会员数量-结束 -->
-					<!-- 今日申请实名会员数量-开始 -->
+					<!-- 指标卡2-结束 -->
+					<!-- 指标卡3-开始 -->
 					<div class="huiYuanLst huiYuanLst3">
 						<div class="yibiao" id="yibiao2"></div>	
 						<div class="huiyuan">
 							<ul  class="fangkuai"></ul>
 							<span></span>
-							<p>今日申请实名会员数量</p>
+							<p>黄线问题</p>
 						</div>
 					</div>
-					<!-- 今日申请实名会员数量-结束 -->
-					<!-- 今日通过实名认证会员数量-开始 -->
+					<!-- 指标卡3-结束 -->
+					<!-- 指标卡4-开始 -->
 					<div class="huiYuanLst">
 						<div class="yibiao" id="yibiao3"></div>	
 						<div class="huiyuan">
 							<ul class="fangkuai"></ul>
 							<span></span>
-							<p>今日通过实名认证申请会员数量</p>
+							<p>基础问题</p>
 						</div>
 					</div>
-					<!-- 今日通过实名认证会员数量-结束 -->
+					<!-- 指标卡4-结束 -->
 				</div>
 			</div>
-			<!-- 挂牌会员实时监控-结束 -->
-			<!-- 北海市猪链网动态-开始 -->
+			<!-- 周排查情况汇总-结束 -->
+			<!-- 消费数据分析-开始 -->
 			<div class="footparent1">
+				<!-- 消费数据分析 -->
 				<div class="footChild">
-					<div class="childtitle"><h2>数据波动分析</h2></div>
+					<div class="childtitle"><h2>消费数据分析</h2></div>
 					<div class="add" onclick="Show(this,'footparent1',2.8,'after')">+</div>
 					<div id="jiage"></div>
 				</div>
 			</div>
-			<!-- 北海市猪链网动态-结束 -->
-			<!-- 交易大厅实时监控-开始 -->
+			<!-- 消费数据分析-结束 -->
+			<!-- 食材验收质量分析-开始 -->
 			<div class="footparent2">
+				<!-- 食材验收质量分析 -->
 				<div class="footChild">
-					<div class="childtitle"><h2>综合数据展示</h2></div>
+					<div class="childtitle"><h2>食材验收质量分析</h2></div>
 					<div class="add" onclick="Show(this,'footparent2',2.8,'after')">+</div>
-					<!-- 各板块成交量格子动画-开始 -->
+					<!-- 左侧分类统计-开始 -->
 					<div class="chengjiaoliang">
 						<div class="CJL clear">
 							<p></p>
-							<span>草木板块成交量</span>
+							<span>副食占比</span>
 							<ul class="fangkuai"></ul>
 						</div>
 						<div class="CJL clear">
 							<p></p>
-							<span>猪联网成交量</span>
+							<span>生鲜占比</span>
 							<ul class="fangkuai"></ul>
 						</div>
 						<div class="CJL clear">
 							<p></p>
-							<span>牛联网成交量</span>
+							<span>粮油占比</span>
 							<ul class="fangkuai"></ul>
 						</div>
 						<div class="CJL clear">
 							<p></p>
-							<span>羊联网成交量</span>
+							<span>其他占比</span>
 							<ul class="fangkuai"></ul>
 						</div>	
 					</div>
-					<!-- 各板块成交量格子动画-开始 -->
+					<!-- 左侧分类统计-结束 -->
 					<div id="CJpie"></div>	
 				</div>
 			</div>
-			<!-- 交易大厅实时监控-结束 -->
-			<!-- 成交量实时监控-开始 -->
+			<!-- 食材验收质量分析-结束 -->
+			<!-- 师生评价情况分析-开始 -->
 			<div class="footparent3">
+				<!-- 师生评价情况分析 -->
 				<div class="footChild">
-					<div class="childtitle"><h2>数据实时监控</h2></div>
+					<div class="childtitle"><h2>师生评价情况分析</h2></div>
 					<div class="add" onclick="Show(this,'footparent3',2.8,'after')">+</div>
-					<!-- 平均成交时间刻度轴-开始 -->
+					<!-- 顶部辅助刻度条-开始 -->
 					<div id="timebar">
-						<span id="pjtime">平均单笔成交时间：</span>
+						<span id="pjtime">师生评价趋势：</span>
 						<ul class="kedu clear"></ul>
 						<div class="kuang">
 							<div class="tianchong"></div>
 						</div>
 					</div>
-					<!-- 平均成交时间刻度轴-开始 -->
+					<!-- 顶部辅助刻度条-结束 -->
 					<div id="cjliang"></div>
 				</div>
 			</div>
-			<!-- 成交量实时监控-结束 -->
+			<!-- 师生评价情况分析-结束 -->
 		</div>	
 		<!-- 显示屏底部-结束 -->	
 		<div class="mask">

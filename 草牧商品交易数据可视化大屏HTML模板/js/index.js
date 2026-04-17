@@ -193,7 +193,7 @@ function guapai(obj) {
 		},
 		tooltip: {},
 		legend: {
-			data: ['处理完成', "正在处理", "正在等待"],
+			data: ['日管控总量', "已完成", "待整改"],
 			bottom: 30,
 			textStyle: { //字体样式
 				color: "#fff",
@@ -281,7 +281,7 @@ function guapai(obj) {
 			},
 		},
 		series: [{
-			name: '处理完成',
+			name: '日管控总量',
 			type: 'bar',
 			color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
 				offset: 0,
@@ -290,9 +290,9 @@ function guapai(obj) {
 				offset: 1,
 				color: '#D66BFD'
 			}]),
-			data: [200, 330, 440, 550, 660, 770, 880]
+			data: [21, 21, 21, 21, 21, 21, 21]
 		}, {
-			name: '正在处理',
+			name: '已完成',
 			type: 'bar',
 			color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
 				offset: 0,
@@ -301,9 +301,9 @@ function guapai(obj) {
 				offset: 1,
 				color: '#09F6FD'
 			}]),
-			data: [880, 770, 660, 550, 440, 330, 220]
+			data: [18, 19, 18, 20, 19, 18, 20]
 		}, {
-			name: '正在等待',
+			name: '待整改',
 			type: 'bar',
 			color: new echarts.graphic.LinearGradient(0, 0, 1, 0, //颜色线性渐变:Linear，（径向渐变：Radial）
 				[{
@@ -316,7 +316,7 @@ function guapai(obj) {
 			),
 			//barGap:0,                                           //条形组中各条形图之间的距离
 			//barCategoryGap:100,                                   //条形组之间的距离
-			data: [550, 420, 360, 750, 460, 660, 290],
+			data: [3, 2, 3, 1, 2, 3, 1],
 			//barWidth:30,
 			// barMaxWidth:30
 		}]
@@ -330,7 +330,7 @@ function guapai(obj) {
 };
 //挂牌占比
 function guapaizhanbi(obj, Index) {
-	var echartdata = [515, 200, 100];
+	var echartdata = [30.2, 52.3, 8.9, 8.6];
 	var rich = {
 		yellow: {
 			color: "#ffc72b",
@@ -407,19 +407,25 @@ function guapaizhanbi(obj, Index) {
 				itemStyle: {
 					color: "#1D3EF9"
 				},
-				name: '今日交割'
+				name: '蔬菜成本'
 			}, {
 				value: echartdata[1],
 				itemStyle: {
 					color: "#FBED14"
 				},
-				name: '今日挂牌'
+				name: '肉类成本'
 			}, {
 				value: echartdata[2],
 				itemStyle: {
 					color: "#3BF88F",
 				},
-				name: '今日冻结'
+				name: '主食成本'
+			}, {
+				value: echartdata[3],
+				itemStyle: {
+					color: "#46F0FF",
+				},
+				name: '副食成本'
 			}]
 		}, ]
 	};
@@ -678,7 +684,7 @@ function guapaizhanbi(obj, Index) {
 			trigger: 'axis'
 		},
 		legend: {
-			data: ['一年生暖季牧草', '一年生冷季牧草', '多年生牧草', "进口饲草"],
+			data: ['01县', '02县', '03县', "04县"],
 			//width: 40,
 			//height: 40,
 			//right: 50,
@@ -700,14 +706,14 @@ function guapaizhanbi(obj, Index) {
 		color: ['#46B05D', '#AF4B87', '#03A2E9', "#F5D52E"],
 		xAxis: {
 			type: 'category',
-			name: "2018年",
+			name: "月份",
 			nameGap: 24,
 			nameTextStyle: { //坐标轴名称样式
 				color: "#fff",
 				fontSize: "24",
 				backgroundColor: "" //文字块背景色
 			},
-			data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月', ],
+			data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
 			splitLine: { //垂直分割线
 				show: false,
 				lineStyle: {
@@ -756,7 +762,7 @@ function guapaizhanbi(obj, Index) {
 			//max:1300,						//轴坐标最大值
 			interval: 260, //强制每段260分割
 			boundaryGap: false,
-			name: "kg/元",
+			name: "金额",
 			nameGap: 30,
 			nameTextStyle: { //坐标轴名称样式
 				color: "#fff",
@@ -798,7 +804,7 @@ function guapaizhanbi(obj, Index) {
 			}
 		},
 		series: [{
-			name: '一年生暖季牧草',
+			name: '01县',
 			type: 'line',
 			//symbol:"circle", 				//标记图像样式（折线上的点的样式，默认为圆形）
 			symbolSize: "6",
@@ -816,9 +822,9 @@ function guapaizhanbi(obj, Index) {
 				}]),
 			},
 			smooth: false, //折线是否平滑
-			data: [1300, 1300, 1300, 1300, 1190, 800, 900, 1000, 1200, 1000, 900, 850]
+			data: [120, 180, 260, 320, 410, 520, 610, 670, 620, 560, 660, 760]
 		}, {
-			name: '一年生冷季牧草',
+			name: '02县',
 			type: 'line',
 			smooth: false,
 			areaStyle: { //区域填充样式
@@ -830,9 +836,9 @@ function guapaizhanbi(obj, Index) {
 					color: 'rgba(173,75,135,.3)'
 				}]),
 			},
-			data: [1220, 1220, 1220, 1220, 1100, 720, 820, 920, 1000, 1200, 1500, 1300]
+			data: [100, 150, 220, 300, 380, 460, 520, 610, 580, 530, 610, 690]
 		}, {
-			name: '多年生牧草',
+			name: '03县',
 			type: 'line',
 			smooth: false,
 			areaStyle: { //区域填充样式
@@ -844,9 +850,9 @@ function guapaizhanbi(obj, Index) {
 					color: 'rgba(3,160,230,.3)'
 				}]),
 			},
-			data: [1000, 900, 800, 620, 680, 680, 720, 840, 1230, 1000, 900, 1100, ]
+			data: [80, 130, 190, 260, 340, 420, 500, 560, 540, 500, 560, 640]
 		}, {
-			name: '进口饲草',
+			name: '04县',
 			type: 'line',
 			smooth: false,
 			areaStyle: { //区域填充样式
@@ -858,7 +864,7 @@ function guapaizhanbi(obj, Index) {
 					color: 'rgba(230,206,52,.3)'
 				}]),
 			},
-			data: [1200, 970, 1000, 720, 780, 880, 920, 740, 900, 1000, 800, 1200]
+			data: [90, 140, 210, 280, 360, 440, 520, 590, 560, 520, 600, 680]
 		}]
 	};
 	// 使用刚指定的配置项和数据显示图表。
@@ -1030,7 +1036,7 @@ function guapaizhanbi(obj, Index) {
 }());
 // 当前成交总数和月成交总数
 (function() {
-	var echartdata = [515, 200, 100, 150];
+	var echartdata = [18.9, 20.3, 10.7, 32.8];
 	var rich = {
 		yellow: {
 			color: "#ffc72b",
@@ -1076,7 +1082,7 @@ function guapaizhanbi(obj, Index) {
 			formatter: "{b}: {c} ({d}%)"
 		},
 		legend: {
-			data: ['成交数', "等待数", "取消数", "成交中"],
+			data: ['待支付采购金额', "今日消费总额", "今日充值金额", "已支付采购金额"],
 
 			bottom: 100,
 			left: "right",
@@ -1133,31 +1139,31 @@ function guapaizhanbi(obj, Index) {
 				itemStyle: {
 					color: "#E6C146"
 				},
-				name: '成交数'
+				name: '待支付采购金额'
 			}, {
 				value: echartdata[1],
 				itemStyle: {
 					color: "#46F0FF"
 				},
-				name: '等待数'
+				name: '今日消费总额'
 			}, {
 				value: echartdata[2],
 				itemStyle: {
 					color: "#D591FE",
 				},
-				name: '取消数'
+				name: '今日充值金额'
 			}, {
-				value: echartdata[2],
+				value: echartdata[3],
 				itemStyle: {
 					color: "#7689FF",
 				},
-				name: '成交中'
+				name: '已支付采购金额'
 			}]
 		}, ]
 	};
 	myChart.setOption(option);
-	var scenicSpotNames = ['洱海生态廊道', '玉龙雪山', '丽江古城', '泸沽湖', '西双版纳'];
-	var scenicSpotTrend = [1180, 1320, 1490, 1670, 1810];
+	var scenicSpotMonths = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00'];
+	var scenicSpotTrend = [95, 410, 720, 670, 610, 560, 660, 772.99];
 	var rightTopOption = {
 		grid: {
 			top: 72,
@@ -1170,7 +1176,7 @@ function guapaizhanbi(obj, Index) {
 		},
 		xAxis: {
 			type: 'category',
-			data: scenicSpotNames,
+			data: scenicSpotMonths,
 			axisLine: {
 				lineStyle: {
 					color: 'rgba(129, 224, 255, .45)'
@@ -1187,7 +1193,7 @@ function guapaizhanbi(obj, Index) {
 		},
 		yAxis: {
 			type: 'value',
-			name: '客流量',
+			name: '消费值',
 			nameTextStyle: {
 				color: '#7fd3ff',
 				padding: [0, 0, 0, -10]
@@ -1208,9 +1214,9 @@ function guapaizhanbi(obj, Index) {
 			}
 		},
 		series: [{
-			name: '实时客流',
+			name: '消费数据',
 			type: 'line',
-			smooth: true,
+			smooth: false,
 			symbol: 'circle',
 			symbolSize: 10,
 			data: scenicSpotTrend,
@@ -1235,27 +1241,10 @@ function guapaizhanbi(obj, Index) {
 		}]
 	};
 	rightTopChart.setOption(rightTopOption);
-	var scenicSpotNames = ['洱海生态廊道', '玉龙雪山', '丽江古城', '泸沽湖', '西双版纳'];
-	var scenicSpotValues = [96, 92, 88, 84, 79];
-	var scenicSpotBarColors = ['#00f0ff', '#22d0ff', '#35b6ff', '#4f97ff', '#ffd84d'];
-	function buildRightTopCompareSeriesData(values) {
-		return values.map(function(value, index) {
-			return {
-				value: value,
-				itemStyle: {
-					color: new echarts.graphic.LinearGradient(1, 0, 0, 0, [{
-						offset: 0,
-						color: scenicSpotBarColors[index]
-					}, {
-						offset: 1,
-						color: 'rgba(10, 64, 146, .55)'
-					}]),
-					shadowBlur: 12,
-					shadowColor: scenicSpotBarColors[index]
-				}
-			};
-		});
-	}
+	var nutritionCountyNames = ['01县', '02县', '03县', '04县'];
+	var nutritionViceFood = [24, 37, 24, 37];
+	var nutritionFreshFood = [42, 26, 42, 26];
+	var nutritionGrainOil = [36, 24, 36, 24];
 	var rightTopCompareOption = {
 		tooltip: {
 			trigger: 'axis',
@@ -1266,19 +1255,24 @@ function guapaizhanbi(obj, Index) {
 				}
 			},
 			formatter: function(params) {
-				var point = params[1] || params[0];
-				return point.name + '<br/>热度指数：' + point.value;
+				var total = 0;
+				var html = params[0].name;
+				params.forEach(function(item) {
+					total += item.value;
+					html += '<br/>' + item.seriesName + '：' + item.value;
+				});
+				return html + '<br/>总计：' + total;
 			}
 		},
 		grid: {
 			top: 6,
-			left: 130,
+			left: 90,
 			right: 24,
-			bottom: 0
+			bottom: 12
 		},
 		xAxis: {
 			type: 'value',
-			max: 100,
+			max: 80,
 			splitNumber: 4,
 			axisLabel: {
 				color: '#7fcfff'
@@ -1298,7 +1292,7 @@ function guapaizhanbi(obj, Index) {
 		yAxis: {
 			type: 'category',
 			inverse: true,
-			data: scenicSpotNames,
+			data: nutritionCountyNames,
 			axisLine: {
 				show: false
 			},
@@ -1311,104 +1305,56 @@ function guapaizhanbi(obj, Index) {
 			}
 		},
 		series: [{
+			name: '副食',
 			type: 'bar',
-			data: scenicSpotNames.map(function() { return 100; }),
-			barWidth: 28,
-			barGap: '-100%',
+			stack: 'nutrition',
+			data: nutritionViceFood,
+			barWidth: 18,
 			itemStyle: {
-				color: 'rgba(255, 255, 255, .06)',
-				borderRadius: 20
-			},
-			silent: true,
-			z: 1
+				color: '#24d0be',
+				borderRadius: [20, 0, 0, 20]
+			}
 		}, {
+			name: '生鲜',
 			type: 'bar',
-			data: buildRightTopCompareSeriesData(scenicSpotValues),
-			barWidth: 28,
+			stack: 'nutrition',
+			data: nutritionFreshFood,
+			barWidth: 18,
 			itemStyle: {
-				borderRadius: 20
+				color: '#d89d38'
 			},
 			label: {
 				show: true,
-				position: 'right',
+				position: 'insideTop',
 				color: '#ffffff',
-				fontSize: 18,
-				fontWeight: 'bold',
 				formatter: '{c}'
 			},
-			emphasis: {
-				itemStyle: {
-					shadowBlur: 20,
-					shadowColor: 'rgba(255,255,255,.35)'
-				},
-				label: {
-					color: '#ffd84d'
-				}
+			z: 2
+		}, {
+			name: '粮油',
+			type: 'bar',
+			stack: 'nutrition',
+			data: nutritionGrainOil,
+			barWidth: 18,
+			itemStyle: {
+				color: '#4ba6f8',
+				borderRadius: [0, 20, 20, 0]
+			},
+			label: {
+				show: true,
+				position: 'insideTop',
+				color: '#ffffff',
+				formatter: '{c}'
 			},
 			z: 3
-		}, {
-			type: 'pictorialBar',
-			symbol: 'circle',
-			symbolSize: [28, 28],
-			symbolPosition: 'end',
-			data: scenicSpotValues.map(function(value, index) {
-				return {
-					value: value,
-					itemStyle: {
-						color: scenicSpotBarColors[index],
-						shadowBlur: 14,
-						shadowColor: scenicSpotBarColors[index]
-					}
-				};
-			}),
-			z: 4
 		}]
 	};
 	rightTopCompareChart.setOption(rightTopCompareOption);
-	setInterval(function() {
-		echartdata[0] = Math.floor(Math.random() * 1000);
-		echartdata[1] = Math.floor(Math.random() * 1000);
-		echartdata[2] = Math.floor(Math.random() * 1000);
-		option.series[0].data[0].value = echartdata[0];
-		option.series[0].data[1].value = echartdata[1];
-		option.series[0].data[2].value = echartdata[2];
-		myChart.setOption(option);
-		scenicSpotTrend.shift();
-		scenicSpotTrend.push(Math.floor(Math.random() * 700) + 1200);
-		rightTopOption.series[0].data = scenicSpotTrend;
-		rightTopChart.setOption(rightTopOption);
-		scenicSpotValues = scenicSpotValues.map(function(value, index) {
-			var delta = index === 0 ? 0 : Math.floor(Math.random() * 3) - 1;
-			return Math.max(72, Math.min(98, value + delta));
-		});
-		rightTopCompareOption.series[1].data = buildRightTopCompareSeriesData(scenicSpotValues);
-		rightTopCompareOption.series[2].data = scenicSpotValues.map(function(value, index) {
-			return {
-				value: value,
-				itemStyle: {
-					color: scenicSpotBarColors[index],
-					shadowBlur: 14,
-					shadowColor: scenicSpotBarColors[index]
-				}
-			};
-		});
-		rightTopCompareChart.setOption(rightTopCompareOption);
-	}, 5000)
-
-	// 1-4月份办理总数
-	let mothnumber = [4536, 2030, 4872, 4931, 4980, 4500]; //每月办理数数据接口
+	var mothnumber = [3410, 3020, 3530, 3400];
 	for (let i = 0; i < mothnumber.length; i++) {
-		$("#cp").find("p").eq(i).width(450 * (mothnumber[i] / 5000));
+		$("#cp").find("p").eq(i).width(450 * (mothnumber[i] / 4000));
 		$("#cp").find("p").eq(i).find("span").text(mothnumber[i]);
 	}
-	// 五月份办理总数
-	let six = mothnumber[5];
-	//自动播放效果展示，数据实时对接后删除
-	setInterval(function() {
-		six += 1;
-		$("#cp").find("p").eq(5).width(450 * (4500 / 5000));
-		$("#cp").find("p").eq(5).find("span").text(six);
-	}, 20000)
 }());
 
 // 数据变化趋势左侧环状图
@@ -1426,7 +1372,7 @@ function guapaizhanbi(obj, Index) {
 		legend: {
 			top: '14%',
 			left: 'center',
-			data: ['图例1', '图例2', '图例3', '图例4', '图例5'],
+			data: ['A供', 'B供', 'C供', 'D供', 'E供'],
 			icon: 'circle',
 			textStyle: {
 				color: 'rgba(255,255,255,.6)',
@@ -1464,11 +1410,11 @@ function guapaizhanbi(obj, Index) {
 				}
 			},
 			data: [
-				{ value: 1, name: '图例1' },
-				{ value: 4, name: '图例2' },
-				{ value: 5, name: '图例3' },
-				{ value: 6, name: '图例4' },
-				{ value: 9, name: '图例5' },
+				{ value: 62, name: 'A供' },
+				{ value: 62, name: 'B供' },
+				{ value: 62, name: 'C供' },
+				{ value: 62, name: 'D供' },
+				{ value: 62, name: 'E供' },
 				{ value: 0, name: "", label: { show: false }, labelLine: { show: false } },
 				{ value: 0, name: "", label: { show: false }, labelLine: { show: false } },
 				{ value: 0, name: "", label: { show: false }, labelLine: { show: false } },
@@ -1548,7 +1494,7 @@ function guapaizhanbi(obj, Index) {
 		option2 = {},
 		option3 = {},
 		option4 = {};
-	var data = [268, 88, 5, 20]; //申请，入驻，申请实名，通过实名
+	var data = [309, 300, 21, 234]; //总计排查单位，合格单位，黄线问题，基础问题
 	function YB(id, names, datas) {
 		var total = 325; //仪表盘总量
 		names = echarts.init($("#" + id)[0]);
@@ -1557,7 +1503,7 @@ function guapaizhanbi(obj, Index) {
 				formatter: "{a} <br/>{b} : {c}%"
 			},
 			series: [{
-				name: '今日入驻申请会员数量',
+				name: '周排查情况汇总',
 				type: 'gauge',
 				min: 0,
 				max: 325,
@@ -1639,32 +1585,20 @@ function guapaizhanbi(obj, Index) {
 				},
 				data: [{
 					value: datas,
-					name: '今日入驻'
+					name: '周排查'
 				}]
 			}]
 		};
 		names.setOption(option, true);
 	}
-	YB("yibiao1", myChart1, 268);
-	YB("yibiao4", myChart4, 88);
-	YB("yibiao2", myChart2, 5);
-	YB("yibiao3", myChart3, 20);
+	YB("yibiao1", myChart1, 309);
+	YB("yibiao4", myChart4, 300);
+	YB("yibiao2", myChart2, 21);
+	YB("yibiao3", myChart3, 234);
 	console.log(option1)
 	var n = 0;
 	run();
 
-	//仪表盘动态数据设定
-	setInterval(function() {
-		data[0] = Math.floor(Math.random() * 325)
-		data[1] = Math.floor(Math.random() * 325)
-		data[2] = Math.floor(Math.random() * 325)
-		data[3] = Math.floor(Math.random() * 325)
-		run();
-		YB("yibiao1", myChart1, data[0]);
-		YB("yibiao4", myChart4, data[1]);
-		YB("yibiao2", myChart2, data[2]);
-		YB("yibiao3", myChart3, data[3]);
-	}, 5000);
 	//方块格子动画高亮特效
 	$(".huiyuan").each(function(index) {
 		var _this = $(this);
@@ -1905,7 +1839,7 @@ function guapaizhanbi(obj, Index) {
 }());
 //交易大厅实时监控--成交量饼图
 (function() {
-	var echartdata = [515, 433, 472, 383];
+	var echartdata = [25, 60, 15, 0];
 	var rich = {
 		yellow: {
 			color: "#ffc72b",
@@ -1981,7 +1915,7 @@ function guapaizhanbi(obj, Index) {
 						color: '#403CB6'
 					}]),
 				},
-				name: '草木板块'
+				name: '副食占比'
 			}, {
 				value: echartdata[1],
 				itemStyle: {
@@ -1993,7 +1927,7 @@ function guapaizhanbi(obj, Index) {
 						color: '#0D55A2'
 					}]),
 				},
-				name: '猪联网'
+				name: '生鲜占比'
 			}, {
 				value: echartdata[2],
 				itemStyle: {
@@ -2005,7 +1939,7 @@ function guapaizhanbi(obj, Index) {
 						color: '#036172'
 					}]),
 				},
-				name: '牛联网'
+				name: '粮油占比'
 			}, {
 				value: echartdata[3],
 				itemStyle: {
@@ -2017,7 +1951,7 @@ function guapaizhanbi(obj, Index) {
 						color: '#FFEA02'
 					}]),
 				},
-				name: '羊联网'
+				name: '其他占比'
 			}]
 		}, ]
 	};
@@ -2039,18 +1973,6 @@ function guapaizhanbi(obj, Index) {
 			})
 		}
 	}
-	setInterval(function() {
-		echartdata[0] = Math.floor(Math.random() * 650);
-		echartdata[1] = Math.floor(Math.random() * 650);
-		echartdata[2] = Math.floor(Math.random() * 650);
-		echartdata[3] = Math.floor(Math.random() * 650);
-		option.series[0].data[0].value = echartdata[0];
-		option.series[0].data[1].value = echartdata[1];
-		option.series[0].data[2].value = echartdata[2];
-		option.series[0].data[3].value = echartdata[3];
-		run()
-		myChart.setOption(option);
-	}, 5000)
 	$(".CJL").each(function(index) {
 		var t = 12;
 		var _this = $(this);
@@ -2090,8 +2012,8 @@ function guapaizhanbi(obj, Index) {
 		},
 		xAxis: {
 			type: 'category',
-			name: "时间段",
-			data: ["9:00-10:00", "10:00-11:00", "11:00-12:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00"],
+			name: "时间",
+			data: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00"],
 			nameTextStyle: { //坐标轴名称样式
 				color: "#fff",
 				fontSize: "18",
@@ -2122,7 +2044,7 @@ function guapaizhanbi(obj, Index) {
 			splitNumber: 7,
 		},
 		yAxis: {
-			name: "（成交量）",
+			name: "评价值",
 			splitNumber: 8,
 			nameTextStyle: { //坐标轴名称样式
 				color: "#fff",
@@ -2158,7 +2080,7 @@ function guapaizhanbi(obj, Index) {
 			},
 		},
 		series: [{
-			name: '类目1',
+			name: '师生评价',
 			type: 'bar',
 			barWidth: 50,
 			label: {
@@ -2174,7 +2096,7 @@ function guapaizhanbi(obj, Index) {
 				offset: 1,
 				color: '#D66BFD'
 			}]),
-			data: [200, 330, 440, 550, 660, 770, 880]
+			data: [820, 560, 730, 500, 720, 220, 730, 600]
 		}]
 	};
 	// 使用刚指定的配置项和数据显示图表。
@@ -2184,37 +2106,14 @@ function guapaizhanbi(obj, Index) {
 	$(".kedu").find("li").each(function(i) {
 		$(this).css("left", i * 13)
 	})
-	setInterval(function() {
-		option.series[0].data[0] = Math.round(Math.random() * 1000)
-		option.series[0].data[1] = Math.round(Math.random() * 1000)
-		option.series[0].data[2] = Math.round(Math.random() * 1000)
-		option.series[0].data[3] = Math.round(Math.random() * 1000)
-		option.series[0].data[4] = Math.round(Math.random() * 1000)
-		option.series[0].data[5] = Math.round(Math.random() * 1000)
-		option.series[0].data[6] = Math.round(Math.random() * 1000)
-		W = Math.round(Math.random() * 10) * 78;
-		H = W / 13;
-		if (H < 8) {
-			$("#pjtime").css({
-				"left": W,
-				"margin-left": -50
-			})
-		} else if (H > 52) {
-			$("#pjtime").css({
-				"left": W,
-				"margin-left": -250
-			})
-		} else {
-			$("#pjtime").css({
-				"left": W,
-				"margin-left": -150
-			})
-		}
-		$("#pjtime").text("平均单笔成交时间：" + (H / 10) + "分钟")
-		$(".tianchong").eq(0).width(W)
-		$(".kedu").find("li").css("height", 6)
-		$(".kedu").find("li").eq(H).css("height", 12)
-		console.log(H / 10)
-		myChart.setOption(option);
-	}, 3000)
+	W = 390;
+	H = 5;
+	$("#pjtime").css({
+		"left": W,
+		"margin-left": -150
+	});
+	$("#pjtime").text("师生评价趋势：07:00 时段最高")
+	$(".tianchong").eq(0).width(W)
+	$(".kedu").find("li").css("height", 6)
+	$(".kedu").find("li").eq(H).css("height", 12)
 }());
