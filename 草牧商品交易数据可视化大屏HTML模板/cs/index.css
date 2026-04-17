@@ -57,9 +57,10 @@ html{width:3840px;height:2160px;}
 .dataCenter i{width:46px;height:2px;background: #FFFFFF;display:block; margin:5px auto;}
 .guapai{ width:700px; height:370px; background: rgb(31,53,249,0.15); margin-left:8px;}
 .yuyue{width:540px;height:100%;position: absolute;right:0; bottom:0;text-align: center;}
-.yuyuejiankong{height:100%;margin-bottom: 28px;}
-#left-top-right { width:490px;position: absolute;left:40px;bottom:20px; font-size:14px;}
-#left-top-right-circle { width:540px;height:368px;position: absolute;left:0;top:0;}
+.yuyuejiankong{height:100%;margin-bottom: 28px; position:relative;}
+.bodyLeftTop .leftTopCircleTitle{ position:absolute; left:-200px; top:18px; z-index:2; }
+#left-top-right { display:none; }
+#left-top-right-circle { width:540px;height:422px;position: absolute;left:0;top:100px;}
 #left-top-right div{ width:490px;height:28px; line-height:28px;border-radius: 5px;margin-bottom:25px;position: relative;}
 #left-top-right ul{display:inline-block;height:100%;width:254px;border: 2px solid #087BB2;border-radius: 5px;}
 #left-top-right li{ width:20px;height:100%;margin-left:5px;float:left;background: #087BB2;overflow: hidden;}
