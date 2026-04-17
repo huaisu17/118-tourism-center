@@ -1058,6 +1058,7 @@ function guapaizhanbi(obj, Index) {
 		}
 	};
 	var myChart = echarts.init($("#left-bottom")[0]);
+	var rightTopChart = echarts.init($("#right-top-bottom")[0]);
 
 	var option = {
 		tooltip: {
@@ -1145,6 +1146,7 @@ function guapaizhanbi(obj, Index) {
 		}, ]
 	};
 	myChart.setOption(option);
+	rightTopChart.setOption(option);
 	setInterval(function() {
 		echartdata[0] = Math.floor(Math.random() * 1000);
 		echartdata[1] = Math.floor(Math.random() * 1000);
@@ -1153,6 +1155,7 @@ function guapaizhanbi(obj, Index) {
 		option.series[0].data[1].value = echartdata[1];
 		option.series[0].data[2].value = echartdata[2];
 		myChart.setOption(option);
+		rightTopChart.setOption(option);
 	}, 5000)
 
 	// 1-4月份办理总数
@@ -1160,6 +1163,8 @@ function guapaizhanbi(obj, Index) {
 	for (let i = 0; i < mothnumber.length; i++) {
 		$("#cp").find("p").eq(i).width(450 * (mothnumber[i] / 5000));
 		$("#cp").find("p").eq(i).find("span").text(mothnumber[i]);
+		$("#cp-right").find("p").eq(i).width(450 * (mothnumber[i] / 5000));
+		$("#cp-right").find("p").eq(i).find("span").text(mothnumber[i]);
 	}
 	// 五月份办理总数
 	let six = mothnumber[5];
@@ -1168,6 +1173,8 @@ function guapaizhanbi(obj, Index) {
 		six += 1;
 		$("#cp").find("p").eq(5).width(450 * (4500 / 5000));
 		$("#cp").find("p").eq(5).find("span").text(six);
+		$("#cp-right").find("p").eq(5).width(450 * (4500 / 5000));
+		$("#cp-right").find("p").eq(5).find("span").text(six);
 	}, 20000)
 }());
 //入驻动态滚动

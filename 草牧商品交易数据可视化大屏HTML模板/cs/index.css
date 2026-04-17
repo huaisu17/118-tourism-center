@@ -132,6 +132,13 @@ text{ font-size:18px; display:inline-block;}
 .default{ height:58px; color:#fff;line-height: 58px;margin-top:26px;font-size:24px;}
 .default span{ display: inline-block; float:left;width:208px; text-align: center;}
 .bodyRightTopBG{ margin-left:8px;width:1248px;height:370px;background: url("../images/001.png") no-repeat; }
+.bodyRightTopBG .bodyLeftBottomLeft,
+.bodyRightTopBG .bodyLeftBottomRight{ height:100%; position:relative; }
+.bodyRightTopBG .bodyLeftBottomLeft .childtitle,
+.bodyRightTopBG .bodyLeftBottomRight .childtitle{ position:absolute; top:18px; left:12px; }
+.bodyRightTopBG #right-top-bottom{ width:730px; height:300px; margin-top:58px; margin-left:-100px; }
+.bodyRightTopBG .bodyLeftBottomRight .t-right{ width:560px; height:300px; margin-top:58px; }
+.bodyRightTopBG .bodyLeftBottomRight .t-right ul{ top:20px; }
 .liushuihaoul{height:308px;overflow: hidden;position: relative;}
 .winwatch{float:left;width:1162px;height:804px;margin-right: 36px;}
 .pinjiawatch{height:804px;float:left;width:1375px;}
