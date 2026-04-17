@@ -1348,30 +1348,45 @@ function guapaizhanbi(obj, Index) {
 	};
 	rightTopCompareChart.setOption(rightTopCompareOption);
 	var mothnumber = [3410, 3020, 3530, 3400];
+	var orderExamples = [
+		'示例：01县午餐预约量稳定，学校食堂提前备餐。',
+		'示例：02县早餐集中下单，窗口分流效果较好。',
+		'示例：03县晚餐订单峰值明显，需重点保障主食供应。',
+		'示例：04县周末订单回落，配送批次可以适当压缩。'
+	];
 	for (let i = 0; i < mothnumber.length; i++) {
 		$("#cp").find("p").eq(i).width(450 * (mothnumber[i] / 4000));
 		$("#cp").find("p").eq(i).find("span").text(mothnumber[i]);
-		$("#cp").find("li").not(".line").eq(i).attr("title", $("#cp").find("li").not(".line").eq(i).find("> span").text() + " 订餐量：" + mothnumber[i]);
+		$("#cp").find("li").not(".line").eq(i).attr("data-order-tip", orderExamples[i]);
 	}
 	var selectedOrderIndex = 0;
 	var orderItems = $("#cp").find("li").not(".line");
+	var orderExampleTip = $("#order-example-tip");
 	function setOrderInteractiveState(index) {
 		orderItems.removeClass("is-active");
 		orderItems.find("p").removeClass("active");
 		orderItems.eq(index).addClass("is-active");
 		orderItems.eq(index).find("p").addClass("active");
 	}
+	function showOrderExample(index) {
+		var countyName = orderItems.eq(index).find("> span").text();
+		orderExampleTip.html(countyName + '：' + orderItems.eq(index).attr("data-order-tip")).addClass("show");
+	}
 	setOrderInteractiveState(selectedOrderIndex);
+	showOrderExample(selectedOrderIndex);
 	orderItems.each(function(index) {
 		$(this).on("mouseenter", function() {
 			setOrderInteractiveState(index);
+			showOrderExample(index);
 		}).on("click", function() {
 			selectedOrderIndex = index;
 			setOrderInteractiveState(selectedOrderIndex);
+			showOrderExample(selectedOrderIndex);
 		});
 	});
 	$("#cp").on("mouseleave", function() {
 		setOrderInteractiveState(selectedOrderIndex);
+		showOrderExample(selectedOrderIndex);
 	});
 }());
 
