@@ -193,7 +193,7 @@ function guapai(obj) {
 		},
 		tooltip: {},
 		legend: {
-			data: ['日管控总量', "已完成", "待整改"],
+			data: ['排查总量', "已完成", "待整改"],
 			bottom: 30,
 			textStyle: { //字体样式
 				color: "#fff",
@@ -213,7 +213,7 @@ function guapai(obj) {
 		},
 		xAxis: {
 			type: 'category',
-			name: "时间",
+			name: "巡检时段",
 			data: ["9:00-10:00", "10:00-11:00", "11:00-12:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00"],
 			nameTextStyle: { //坐标轴名称样式
 				color: "#fff",
@@ -245,7 +245,7 @@ function guapai(obj) {
 			splitNumber: 7,
 		},
 		yAxis: {
-			name: "数量",
+			name: "排查单位数",
 			splitNumber: 8,
 			nameTextStyle: { //坐标轴名称样式
 				color: "#fff",
@@ -281,7 +281,7 @@ function guapai(obj) {
 			},
 		},
 		series: [{
-			name: '日管控总量',
+			name: '排查总量',
 			type: 'bar',
 			color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
 				offset: 0,
