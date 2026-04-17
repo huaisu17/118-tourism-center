@@ -1,4 +1,4 @@
-*{padding:0;margin:0;list-style: none; max-height: 99999px; }
+﻿*{padding:0;margin:0;list-style: none; max-height: 99999px; }
 .content{position: relative;width:3840px;height:2160px;box-sizing:border-box;padding-bottom: 35px; background:url("../images/beijing.png") no-repeat; overflow: hidden; font-size:30px;}
 .rel{position: relative;}
 html{width:3840px;height:2160px;}
@@ -131,14 +131,14 @@ text{ font-size:18px; display:inline-block;}
 .liushuihaoul span{display: inline-block;float:left;width:208px;line-height: 50px;font-size:18px;text-overflow: ellipsis; overflow: hidden; white-space:nowrap;vertical-align: middle;text-align: center;}
 .default{ height:58px; color:#fff;line-height: 58px;margin-top:26px;font-size:24px;}
 .default span{ display: inline-block; float:left;width:208px; text-align: center;}
-.bodyRightTopBG{ margin-left:8px;width:1248px;height:370px;background: url("../images/001.png") no-repeat; }
+.bodyRightTopBG{ margin-left:8px; width:1248px; height:536px; background:url("../images/001.png") no-repeat; background-size:100% 100%; }
 .bodyRightTopBG .rightTopPanel{ float:left; width:50%; height:100%; position:relative; }
-.bodyRightTopBG .rightTopPanel .childtitle{ position:absolute; top:18px; left:12px; }
+.bodyRightTopBG .rightTopPanel .childtitle{ position:absolute; top:10px; left:12px; z-index:2; }
 .bodyRightTopBG .rightTopChartPanel{ padding-right:16px; box-sizing:border-box; }
 .bodyRightTopBG .rightTopComparePanel{ padding-left:16px; box-sizing:border-box; }
-.bodyRightTopBG #right-top-bottom{ width:100%; height:278px; margin-top:70px; margin-left:0; }
+.bodyRightTopBG #right-top-bottom{ width:100%; height:492px; margin-top:40px; margin-left:0; }
 .bodyRightTopBG .rightTopComparePanel .t-right{ display:none; }
-.bodyRightTopBG #right-top-compare{ width:100%; height:340px; margin-top:20px; }
+.bodyRightTopBG #right-top-compare{ width:100%; height:476px; margin-top:56px; }
 .bodyRightTopBG .rightTopCompareLegend{ display:flex; justify-content:center; gap:14px; margin-top:-8px; flex-wrap:wrap; }
 .bodyRightTopBG .rightTopCompareLegendItem{ min-width:86px; padding:8px 10px; border:1px solid rgba(83,180,255,.22); background:rgba(11,31,79,.38); display:flex; flex-direction:column; align-items:center; color:#8fd7ff; font-size:13px; line-height:1.2; cursor:pointer; transition:.2s ease; }
 .bodyRightTopBG .rightTopCompareLegendItem:hover,

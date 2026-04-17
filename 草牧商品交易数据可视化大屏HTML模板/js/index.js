@@ -1156,10 +1156,10 @@ function guapaizhanbi(obj, Index) {
 	var scenicSpotTrend = [1180, 1320, 1490, 1670, 1810];
 	var rightTopOption = {
 		grid: {
-			top: 80,
-			left: 60,
-			right: 30,
-			bottom: 40
+			top: 42,
+			left: 30,
+			right: 12,
+			bottom: 2
 		},
 		tooltip: {
 			trigger: 'axis'
@@ -1174,7 +1174,7 @@ function guapaizhanbi(obj, Index) {
 			},
 			axisLabel: {
 				color: '#BEEBFF',
-				fontSize: 16,
+				fontSize: 18,
 				interval: 0
 			},
 			axisTick: {
@@ -1267,10 +1267,10 @@ function guapaizhanbi(obj, Index) {
 			}
 		},
 		grid: {
-			top: 18,
-			left: 110,
-			right: 50,
-			bottom: 18
+			top: 6,
+			left: 130,
+			right: 24,
+			bottom: 0
 		},
 		xAxis: {
 			type: 'value',
@@ -1303,13 +1303,13 @@ function guapaizhanbi(obj, Index) {
 			},
 			axisLabel: {
 				color: '#d9f4ff',
-				fontSize: 15
+				fontSize: 18
 			}
 		},
 		series: [{
 			type: 'bar',
 			data: scenicSpotNames.map(function() { return 100; }),
-			barWidth: 18,
+			barWidth: 28,
 			barGap: '-100%',
 			itemStyle: {
 				color: 'rgba(255, 255, 255, .06)',
@@ -1320,7 +1320,7 @@ function guapaizhanbi(obj, Index) {
 		}, {
 			type: 'bar',
 			data: buildRightTopCompareSeriesData(scenicSpotValues),
-			barWidth: 18,
+			barWidth: 28,
 			itemStyle: {
 				borderRadius: 20
 			},
@@ -1328,7 +1328,7 @@ function guapaizhanbi(obj, Index) {
 				show: true,
 				position: 'right',
 				color: '#ffffff',
-				fontSize: 16,
+				fontSize: 18,
 				fontWeight: 'bold',
 				formatter: '{c}'
 			},
@@ -1345,7 +1345,7 @@ function guapaizhanbi(obj, Index) {
 		}, {
 			type: 'pictorialBar',
 			symbol: 'circle',
-			symbolSize: [18, 18],
+			symbolSize: [28, 28],
 			symbolPosition: 'end',
 			data: scenicSpotValues.map(function(value, index) {
 				return {
