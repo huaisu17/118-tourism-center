@@ -470,16 +470,6 @@ function guapaizhanbi(obj, Index) {
 			}, 300)
 		})
 	})
-	setInterval(function() {
-		echartdata[0] = Math.floor(Math.random() * 1000);
-		echartdata[1] = Math.floor(Math.random() * 1000);
-		echartdata[2] = Math.floor(Math.random() * 1000);
-		option.series[0].data[0].value = echartdata[0];
-		option.series[0].data[1].value = echartdata[1];
-		option.series[0].data[2].value = echartdata[2];
-		run()
-		myChart.setOption(option);
-	}, 5000)
 }
 //中国地图
 (function() {
