@@ -1623,31 +1623,45 @@ function guapaizhanbi(obj, Index) {
 		}
 	}
 }());
-//北海市猪链网动态--价格波动
+//消费数据分析
 (function() {
-	// 基于准备好的dom，初始化echarts实例
 	var myChart = echarts.init($("#jiage")[0]);
-	// 指定图表的配置项和数据
+	var consumptionMonths = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+	var consumptionSeries = [{
+		name: '01县',
+		data: [3260, 3340, 3410, 3380, 3450, 3520, 3490, 3560, 3620, 3580, 3650, 3720]
+	}, {
+		name: '02县',
+		data: [2840, 2920, 3020, 2990, 3070, 3140, 3090, 3160, 3210, 3180, 3260, 3310]
+	}, {
+		name: '03县',
+		data: [3320, 3410, 3530, 3470, 3550, 3620, 3590, 3660, 3720, 3680, 3760, 3820]
+	}, {
+		name: '04县',
+		data: [2950, 3040, 3400, 3360, 3430, 3490, 3450, 3520, 3580, 3540, 3610, 3680]
+	}];
+	var lineColors = ['#46B05D', '#AF4B87', '#03A2E9', '#F5D52E'];
+	var lineAreaColors = ['rgba(70,176,93,.28)', 'rgba(175,75,135,.28)', 'rgba(3,162,233,.28)', 'rgba(245,213,46,.28)'];
 	var option = {
-		textStyle: { //全局字体样式设置
+		textStyle: {
 			color: "#000",
 			fontSize: 30,
 			fontWeight: "lighter"
 		},
-		nameTextStyle: { //轴名称字体样式
-			color: "#0BA4E8",
-			fontWeight: "normal"
-		},
-		tooltip: { //鼠标hover显示提示信息
-			trigger: 'axis'
+		tooltip: {
+			trigger: 'axis',
+			axisPointer: {
+				type: 'cross',
+				label: {
+					backgroundColor: 'rgba(18, 65, 124, .9)'
+				}
+			}
 		},
 		legend: {
-			data: ['一年生暖季牧草', '一年生冷季牧草', '多年生牧草', "进口饲草"],
-			//width: 40,
-			//height: 40,
-			//right: 50,
+			data: consumptionSeries.map(function(item) {
+				return item.name;
+			}),
 			top: 20,
-			//orient: "vertical", //纵向排列
 			itemGap: 25,
 			textStyle: {
 				color: "#fff",
@@ -1655,177 +1669,120 @@ function guapaizhanbi(obj, Index) {
 			}
 		},
 		grid: {
-			top: "10%",
-			left: '1%', //折线框左边距
-			right: '9%', //折线框右边距
-			bottom: '6%', //折线框下边距
+			top: "12%",
+			left: '2%',
+			right: '9%',
+			bottom: '8%',
 			containLabel: true
 		},
-		color: ['#46B05D', '#AF4B87', '#03A2E9', "#F5D52E"],
+		color: lineColors,
 		xAxis: {
 			type: 'category',
-			name: "2018年",
+			name: "月份",
 			nameGap: 20,
-			nameTextStyle: { //坐标轴名称样式
+			nameTextStyle: {
 				color: "#fff",
-				fontSize: "16",
-				backgroundColor: "" //文字块背景色
+				fontSize: "16"
 			},
-			data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月', ],
-			splitLine: { //垂直分割线
-				show: false,
-				lineStyle: {
-					color: "#ccc",
-					width: "0.5"
-				}
+			data: consumptionMonths,
+			splitLine: {
+				show: false
 			},
-			splitArea: {
-				show: ''
-			},
-			axisLine: { //坐标轴线设置
+			axisLine: {
 				show: true,
 				lineStyle: {
 					color: "#fff",
 					width: "2"
 				},
-				symbol: ["none", "arrow"], //坐标轴末端箭头
-				symbolSize: [8, 20], //箭头高度和宽度
-				symbolOffset: [0, 16] //箭头与轴线端点的距离
+				symbol: ["none", "arrow"],
+				symbolSize: [8, 20],
+				symbolOffset: [0, 16]
 			},
-			axisTick: { //坐标刻度线样式
+			axisTick: {
 				lineStyle: {
 					color: "#fff",
 					width: "2"
 				}
 			},
-			axisLabel: { //刻度线
+			axisLabel: {
 				textStyle: {
 					color: "#fff",
 					fontSize: 20,
 					fontWeight: "normal",
-					interval: 0 //显示全部  					
+					interval: 0
 				}
-			},
-			// axisLabel: { //坐标轴刻度标签名样式
-			// 	color: "#fff",
-			// 	fontSize: "14",
-			// 	rotate: 0, //文字倾斜(当刻度标签名过长时使用)
-			// 	interval: 0 //显示全部                
-			// },
+			}
 		},
 		yAxis: {
 			type: 'value',
-			//splitNumber: 5 ,				//轴分割段数
-			min: 0, //轴坐标最小值
-			//max:1300,						//轴坐标最大值
-			interval: 260, //强制每段260分割
+			min: 2600,
+			max: 4000,
+			interval: 200,
 			boundaryGap: false,
-			name: "kg/元",
+			name: "消费金额",
 			nameGap: 30,
-			nameTextStyle: { //坐标轴名称样式
+			nameTextStyle: {
 				color: "#fff",
-				fontSize: "16",
-				//backgroundColor: "" //文字块背景色
-
+				fontSize: "16"
 			},
-
-			axisLine: { //坐标轴线设置
+			axisLine: {
 				show: true,
 				lineStyle: {
 					color: "#fff",
 					width: "2"
 				},
-				symbol: ["none", "arrow"], //坐标轴末端箭头
-				symbolSize: [8, 20], //箭头高度和宽度
-				symbolOffset: [0, 16] //箭头与轴线端点的距离			
+				symbol: ["none", "arrow"],
+				symbolSize: [8, 20],
+				symbolOffset: [0, 16]
 			},
-			splitLine: { //水平垂直分割线样式
+			splitLine: {
 				show: true,
 				lineStyle: {
 					color: "#02416D",
 					width: "0.5"
 				}
 			},
-			axisTick: { //坐标刻度线样式
+			axisTick: {
 				lineStyle: {
 					color: "#fff",
 					width: "2"
 				}
 			},
-			axisLabel: { //轴刻度字体样式设置
+			axisLabel: {
 				textStyle: {
 					color: "#fff",
 					fontSize: 14,
 					fontWeight: "normal",
-					interval: 0 //显示全部  
+					interval: 0
 				}
 			}
 		},
-		series: [{
-			name: '一年生暖季牧草',
-			type: 'line',
-			//symbol:"circle", 				//标记图像样式（折线上的点的样式，默认为圆形）
-			symbolSize: "6",
-			itemStyle: { //折线观点的样式
-				//color: "red",
-				//borderColor: "green"
-			},
-			areaStyle: { //区域填充样式
-				color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-					offset: 0,
-					color: 'rgba(62,155,93,.1)'
-				}, {
-					offset: 1,
-					color: 'rgba(62,155,93,.3)'
-				}]),
-			},
-			smooth: false, //折线是否平滑
-			data: [1300, 1300, 1300, 1300, 1190, 800, 900, 1000, 1200, 1000, 900, 850]
-		}, {
-			name: '一年生冷季牧草',
-			type: 'line',
-			smooth: false,
-			areaStyle: { //区域填充样式
-				color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-					offset: 0,
-					color: 'rgba(173,75,135,.1)'
-				}, {
-					offset: 1,
-					color: 'rgba(173,75,135,.3)'
-				}]),
-			},
-			data: [1220, 1220, 1220, 1220, 1100, 720, 820, 920, 1000, 1200, 1500, 1300]
-		}, {
-			name: '多年生牧草',
-			type: 'line',
-			smooth: false,
-			areaStyle: { //区域填充样式
-				color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-					offset: 0,
-					color: 'rgba(3,160,230,.1)'
-				}, {
-					offset: 1,
-					color: 'rgba(3,160,230,.3)'
-				}]),
-			},
-			data: [1000, 900, 800, 620, 680, 680, 720, 840, 1230, 1000, 900, 1100, ]
-		}, {
-			name: '进口饲草',
-			type: 'line',
-			smooth: false,
-			areaStyle: { //区域填充样式
-				color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-					offset: 0,
-					color: 'rgba(230,206,52,.1)'
-				}, {
-					offset: 1,
-					color: 'rgba(230,206,52,.3)'
-				}]),
-			},
-			data: [1200, 970, 1000, 720, 780, 880, 920, 740, 900, 1000, 800, 1200]
-		}]
+		series: consumptionSeries.map(function(item, index) {
+			return {
+				name: item.name,
+				type: 'line',
+				smooth: false,
+				symbol: 'circle',
+				symbolSize: 8,
+				lineStyle: {
+					width: 3
+				},
+				emphasis: {
+					focus: 'series'
+				},
+				areaStyle: {
+					color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+						offset: 0,
+						color: lineAreaColors[index]
+					}, {
+						offset: 1,
+						color: 'rgba(0,0,0,0)'
+					}])
+				},
+				data: item.data
+			};
+		})
 	};
-	// 使用刚指定的配置项和数据显示图表。
 	myChart.setOption(option);
 }());
 //交易大厅实时监控--成交量饼图
