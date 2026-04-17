@@ -1348,47 +1348,141 @@ function guapaizhanbi(obj, Index) {
 		}]
 	};
 	rightTopCompareChart.setOption(rightTopCompareOption);
-	var mothnumber = [3410, 3020, 3530, 3400];
-	var orderExamples = [
-		'示例：01县午餐预约量稳定，学校食堂提前备餐。',
-		'示例：02县早餐集中下单，窗口分流效果较好。',
-		'示例：03县晚餐订单峰值明显，需重点保障主食供应。',
-		'示例：04县周末订单回落，配送批次可以适当压缩。'
-	];
-	for (let i = 0; i < mothnumber.length; i++) {
-		$("#cp").find("p").eq(i).width(450 * (mothnumber[i] / 4000));
-		$("#cp").find("p").eq(i).find("span").text(mothnumber[i]);
-		$("#cp").find("li").not(".line").eq(i).attr("data-order-tip", orderExamples[i]);
-	}
-	var selectedOrderIndex = 0;
-	var orderItems = $("#cp").find("li").not(".line");
-	var orderExampleTip = $("#order-example-tip");
-	function setOrderInteractiveState(index) {
-		orderItems.removeClass("is-active");
-		orderItems.find("p").removeClass("active");
-		orderItems.eq(index).addClass("is-active");
-		orderItems.eq(index).find("p").addClass("active");
-	}
-	function showOrderExample(index) {
-		var countyName = orderItems.eq(index).find("> span").text();
-		orderExampleTip.html(countyName + '：' + orderItems.eq(index).attr("data-order-tip")).addClass("show");
-	}
-	setOrderInteractiveState(selectedOrderIndex);
-	showOrderExample(selectedOrderIndex);
-	orderItems.each(function(index) {
-		$(this).on("mouseenter", function() {
-			setOrderInteractiveState(index);
-			showOrderExample(index);
-		}).on("click", function() {
-			selectedOrderIndex = index;
-			setOrderInteractiveState(selectedOrderIndex);
-			showOrderExample(selectedOrderIndex);
-		});
-	});
-	$("#cp").on("mouseleave", function() {
-		setOrderInteractiveState(selectedOrderIndex);
-		showOrderExample(selectedOrderIndex);
-	});
+	var orderAnalysisData = [{
+		name: '01县',
+		value: 3410,
+		example: '示例：01县午餐预约量稳定，学校食堂提前备餐。'
+	}, {
+		name: '02县',
+		value: 3020,
+		example: '示例：02县早餐集中下单，窗口分流效果较好。'
+	}, {
+		name: '03县',
+		value: 3530,
+		example: '示例：03县晚餐订单峰值明显，需重点保障主食供应。'
+	}, {
+		name: '04县',
+		value: 3400,
+		example: '示例：04县周末订单回落，配送批次可以适当压缩。'
+	}];
+	var orderChart = echarts.init($("#cp")[0]);
+	var orderOption = {
+		grid: {
+			top: 36,
+			left: 96,
+			right: 34,
+			bottom: 24
+		},
+		tooltip: {
+			trigger: 'axis',
+			axisPointer: {
+				type: 'shadow',
+				shadowStyle: {
+					color: 'rgba(88, 184, 255, .12)'
+				}
+			},
+			backgroundColor: 'rgba(4,18,52,.92)',
+			borderColor: 'rgba(101,196,255,.26)',
+			borderWidth: 1,
+			textStyle: {
+				color: '#dff6ff',
+				fontSize: 14
+			},
+			formatter: function(params) {
+				var point = params[0];
+				var current = orderAnalysisData[point.dataIndex];
+				return current.name + '<br/>订餐量：' + current.value + '<br/>' + current.example;
+			}
+		},
+		xAxis: {
+			type: 'value',
+			min: 0,
+			max: 4000,
+			interval: 1000,
+			axisLine: {
+				lineStyle: {
+					color: 'rgba(129, 224, 255, .45)'
+				}
+			},
+			axisTick: {
+				show: false
+			},
+			axisLabel: {
+				color: '#BEEBFF',
+				fontSize: 16
+			},
+			splitLine: {
+				lineStyle: {
+					color: 'rgba(88, 184, 255, .12)'
+				}
+			}
+		},
+		yAxis: {
+			type: 'category',
+			data: orderAnalysisData.map(function(item) {
+				return item.name;
+			}),
+			inverse: true,
+			axisTick: {
+				show: false
+			},
+			axisLine: {
+				show: true,
+				lineStyle: {
+					color: '#293CF8',
+					width: 2
+				}
+			},
+			axisLabel: {
+				color: '#d9f4ff',
+				fontSize: 18,
+				margin: 12
+			}
+		},
+		series: [{
+			type: 'bar',
+			data: orderAnalysisData.map(function(item) {
+				return item.value;
+			}),
+			barWidth: 22,
+			showBackground: true,
+			backgroundStyle: {
+				color: 'rgba(9,34,92,.18)',
+				borderColor: '#1A6BD5',
+				borderWidth: 1
+			},
+			label: {
+				show: true,
+				position: 'right',
+				color: '#dff8ff',
+				fontSize: 16
+			},
+			itemStyle: {
+				borderRadius: [0, 14, 14, 0],
+				color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+					offset: 0,
+					color: 'rgba(28,40,200,1)'
+				}, {
+					offset: 1,
+					color: 'rgba(15,182,252,1)'
+				}])
+			},
+			emphasis: {
+				itemStyle: {
+					shadowBlur: 18,
+					shadowColor: 'rgba(15,182,252,.38)',
+					color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+						offset: 0,
+						color: '#3557ff'
+					}, {
+						offset: 1,
+						color: '#36d8ff'
+					}])
+				}
+			}
+		}]
+	};
+	orderChart.setOption(orderOption);
 }());
 
 // 数据变化趋势左侧环状图
