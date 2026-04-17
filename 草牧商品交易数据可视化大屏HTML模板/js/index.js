@@ -1410,6 +1410,78 @@ function guapaizhanbi(obj, Index) {
 		$("#cp").find("p").eq(5).find("span").text(six);
 	}, 20000)
 }());
+
+// 数据变化趋势左侧环状图
+(function() {
+	var chartDom = $("#right-bottom-ring-chart")[0];
+	if (!chartDom) {
+		return;
+	}
+	var myChart = echarts.init(chartDom);
+	var option = {
+		tooltip: {
+			trigger: 'item',
+			formatter: "{b} : {c} ({d}%)"
+		},
+		legend: {
+			top: '14%',
+			left: 'center',
+			data: ['图例1', '图例2', '图例3', '图例4', '图例5'],
+			icon: 'circle',
+			textStyle: {
+				color: 'rgba(255,255,255,.6)',
+				fontSize: 18
+			},
+			itemGap: 18
+		},
+		calculable: true,
+		series: [{
+			name: '',
+			color: ['#62c98d', '#2f89cf', '#4cb9cf', '#53b666', '#c9c862', '#c98b62', '#c962b9', '#c96262'],
+			type: 'pie',
+			startAngle: 0,
+			radius: [108, 196],
+			center: ['50%', '43%'],
+			roseType: 'area',
+			avoidLabelOverlap: false,
+			label: {
+				normal: {
+					show: true,
+					color: '#fff',
+					fontSize: 16
+				},
+				emphasis: {
+					show: true
+				}
+			},
+			labelLine: {
+				normal: {
+					show: true,
+					length2: 1
+				},
+				emphasis: {
+					show: true
+				}
+			},
+			data: [
+				{ value: 1, name: '图例1' },
+				{ value: 4, name: '图例2' },
+				{ value: 5, name: '图例3' },
+				{ value: 6, name: '图例4' },
+				{ value: 9, name: '图例5' },
+				{ value: 0, name: "", label: { show: false }, labelLine: { show: false } },
+				{ value: 0, name: "", label: { show: false }, labelLine: { show: false } },
+				{ value: 0, name: "", label: { show: false }, labelLine: { show: false } },
+				{ value: 0, name: "", label: { show: false }, labelLine: { show: false } },
+				{ value: 0, name: "", label: { show: false }, labelLine: { show: false } }
+			]
+		}]
+	};
+	myChart.setOption(option);
+	window.addEventListener("resize", function() {
+		myChart.resize();
+	});
+}());
 //入驻动态滚动
 (function() {
 	for (var i = 0; i < RZstatus.length; i++) {

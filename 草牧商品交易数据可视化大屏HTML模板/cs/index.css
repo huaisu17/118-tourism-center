@@ -132,7 +132,7 @@ text{ font-size:18px; display:inline-block;}
 .liushuihaoul span{display: inline-block;float:left;width:208px;line-height: 50px;font-size:18px;text-overflow: ellipsis; overflow: hidden; white-space:nowrap;vertical-align: middle;text-align: center;}
 .default{ height:58px; color:#fff;line-height: 58px;margin-top:26px;font-size:24px;}
 .default span{ display: inline-block; float:left;width:208px; text-align: center;}
-.bodyRightTopBG{ margin-left:8px; width:1248px; height:536px; background:url("../images/001.png") no-repeat; background-size:100% 100%; }
+.bodyRightTopBG{ margin-left:8px; width:1248px; height:536px; background:none; background-size:100% 100%; }
 .bodyRightTopBG .rightTopPanel{ float:left; width:50%; height:100%; position:relative; }
 .bodyRightTopBG .rightTopPanel .childtitle{ position:absolute; top:10px; left:12px; z-index:2; }
 .bodyRightTopBG .rightTopChartPanel{ padding-right:16px; box-sizing:border-box; }
@@ -166,8 +166,12 @@ text{ font-size:18px; display:inline-block;}
 /*主体body--结束*/
 .bodyRightBottom .rightBottomSectionTitle{position:absolute;left:650px;top:12px;z-index:3;display:inline-block;background:url(../images/childtitle.png) no-repeat;background-size:100% 100%;padding:2px 50px 2px 15px;}
 .bodyRightBottom .rightBottomSectionTitle h2{text-align:left;font-size:42px;display:inline-block;font-weight:bold;background-image:-webkit-gradient(linear,0 top,0 bottom,from(#CFE3FF),to(#74B3FC));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.bodyRightBottom .rightBottomRuzhu{position:absolute;left:650px;width:560px;top:132px;bottom:24px;padding:22px 26px 18px 11px;background:rgba(6,25,89,.22);border:1px solid rgba(65,190,255,.28);box-shadow:inset 0 0 20px rgba(33,117,255,.08);}
-.bodyRightBottom .rightBottomRuzhu .contgundong{position:relative;top:0;height:345px;overflow:hidden;}
+.bodyRightBottom .rightBottomChartTitle{position:absolute;left:36px;top:12px;z-index:3;display:inline-block;background:url(../images/childtitle.png) no-repeat;background-size:100% 100%;padding:2px 50px 2px 15px;}
+.bodyRightBottom .rightBottomChartTitle h2{text-align:left;font-size:42px;display:inline-block;font-weight:bold;background-image:-webkit-gradient(linear,0 top,0 bottom,from(#CFE3FF),to(#74B3FC));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.bodyRightBottom .rightBottomRingChartWrap{position:absolute;left:9px;top:75px;width:600px;bottom:24px;padding:12px 10px 10px;background:none;border:none;box-shadow:none;}
+#right-bottom-ring-chart{width:100%;height:100%;}
+.bodyRightBottom .rightBottomRuzhu{position:absolute;left:650px;width:560px;top:132px;bottom:24px;padding:22px 26px 18px 11px;background:none;border:none;box-shadow:none;}
+.bodyRightBottom .rightBottomRuzhu .contgundong{position:relative;top:-60px;height:415px;overflow:hidden;}
 .bodyRightBottom .rightBottomRuzhu .moveul{width:100%;}
 .bodyRightBottom .rightBottomRuzhu .moveul li{height:56px;line-height:56px;margin-bottom:10px;padding:0 18px;background:linear-gradient(90deg,rgba(31,74,178,.34),rgba(5,31,96,.45));border:1px solid rgba(98,205,255,.24);font-size:22px;color:#63D9FF;}
 .bodyRightBottom .rightBottomRuzhu .moveul li:nth-child(odd){background:linear-gradient(90deg,rgba(21,109,188,.32),rgba(8,39,107,.5));}
