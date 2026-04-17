@@ -1263,7 +1263,7 @@ function guapaizhanbi(obj, Index) {
 		},
 		xAxis: {
 			type: 'value',
-			max: 80,
+			max: 120,
 			splitNumber: 4,
 			axisLabel: {
 				color: '#7fcfff'
