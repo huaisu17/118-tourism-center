@@ -868,7 +868,11 @@ function guapaizhanbi(obj, Index) {
 //价格走势
 (function() {
 	// 基于准备好的dom，初始化echarts实例
-	var myChart = echarts.init($("#jiagezoushi")[0]);
+	var chartDom = $("#jiagezoushi")[0];
+	if (!chartDom) {
+		return;
+	}
+	var myChart = echarts.init(chartDom);
 	// 指定图表的配置项和数据
 	var option = {
 		textStyle: { //全局字体样式设置
@@ -1156,10 +1160,10 @@ function guapaizhanbi(obj, Index) {
 	var scenicSpotTrend = [1180, 1320, 1490, 1670, 1810];
 	var rightTopOption = {
 		grid: {
-			top: 42,
-			left: 30,
+			top: 72,
+			left: 86,
 			right: 12,
-			bottom: 2
+			bottom: 32
 		},
 		tooltip: {
 			trigger: 'axis'
