@@ -1097,6 +1097,7 @@ function guapaizhanbi(obj, Index) {
 		},
 		series: [{
 			type: 'pie',
+			center: ['30%', '46%'],
 			label: {
 				fontSize: 24,
 				normal: {
@@ -1120,10 +1121,10 @@ function guapaizhanbi(obj, Index) {
 					//color: auto
 					width: 2
 				},
-				length: 20,
-				length2: 50
+				length: 18,
+				length2: 36
 			},
-			radius: ['40%', '60%'],
+			radius: ['28%', '45%'],
 			data: [{
 				value: echartdata[0],
 				itemStyle: {
