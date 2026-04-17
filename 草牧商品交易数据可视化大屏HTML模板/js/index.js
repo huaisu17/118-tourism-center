@@ -1097,7 +1097,7 @@ function guapaizhanbi(obj, Index) {
 		},
 		series: [{
 			type: 'pie',
-			center: ['30%', '46%'],
+			center: ['50%', '46%'],
 			label: {
 				fontSize: 24,
 				normal: {
@@ -1906,14 +1906,15 @@ function guapaizhanbi(obj, Index) {
 	myChart.setOption(option);
 	var total = 650;
 	var n = 0;
+	var totalBlocks = 13;
 	run();
 
 	function run() {
 		for (var i = 0; i < echartdata.length; i++) {
-			n = echartdata[i] / 50; //每个格子数值50,13个格子650
-			$(".CJL").eq(i).find("p").text(echartdata[i])
+			n = Math.round((echartdata[i] / 100) * totalBlocks);
+			$(".CJL").eq(i).find("p").text(echartdata[i] + "%")
 			$(".CJL").eq(i).find("li").each(function(index) {
-				if (index >= (12 - n)) {
+				if (index >= (totalBlocks - n)) {
 					$(this).css("background", "#00A0E9")
 				} else {
 					$(this).css("background", "#1D2088")
@@ -1922,18 +1923,18 @@ function guapaizhanbi(obj, Index) {
 		}
 	}
 	$(".CJL").each(function(index) {
-		var t = 12;
+		var t = totalBlocks - 1;
 		var _this = $(this);
 		setInterval(function() {
-			n = Math.round(echartdata[index] / 50);
-			if (t < 13 - n) {
-				t = 13
+			n = Math.round((echartdata[index] / 100) * totalBlocks);
+			if (t < totalBlocks - n) {
+				t = totalBlocks
 			}
 			if (n == 0) {
-				_this.find("li").eq(12).css("background", "#FBED14")
+				_this.find("li").eq(totalBlocks - 1).css("background", "#FBED14")
 			} else {
 				_this.find("li").each(function(i) {
-					if (i >= (13 - n)) {
+					if (i >= (totalBlocks - n)) {
 						$(this).css("background", "#00A0E9")
 						_this.find("li").eq(t).css("background", "#FBED14")
 					} else {
