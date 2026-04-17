@@ -1057,8 +1057,14 @@ function guapaizhanbi(obj, Index) {
 			height: 0,
 		}
 	};
+	if (!$("#right-top-compare").length) {
+		$(".rightTopComparePanel").append('<div id="right-top-compare"></div>');
+	}
+	$(".rightTopCompareLegend").remove();
+	$(".rightTopCompareDetail").remove();
 	var myChart = echarts.init($("#left-bottom")[0]);
 	var rightTopChart = echarts.init($("#right-top-bottom")[0]);
+	var rightTopCompareChart = echarts.init($("#right-top-compare")[0]);
 
 	var option = {
 		tooltip: {
@@ -1146,7 +1152,215 @@ function guapaizhanbi(obj, Index) {
 		}, ]
 	};
 	myChart.setOption(option);
-	rightTopChart.setOption(option);
+	var scenicSpotNames = ['洱海生态廊道', '玉龙雪山', '丽江古城', '泸沽湖', '西双版纳'];
+	var scenicSpotTrend = [1180, 1320, 1490, 1670, 1810];
+	var rightTopOption = {
+		grid: {
+			top: 80,
+			left: 60,
+			right: 30,
+			bottom: 40
+		},
+		tooltip: {
+			trigger: 'axis'
+		},
+		xAxis: {
+			type: 'category',
+			data: scenicSpotNames,
+			axisLine: {
+				lineStyle: {
+					color: 'rgba(129, 224, 255, .45)'
+				}
+			},
+			axisLabel: {
+				color: '#BEEBFF',
+				fontSize: 16,
+				interval: 0
+			},
+			axisTick: {
+				show: false
+			}
+		},
+		yAxis: {
+			type: 'value',
+			name: '客流量',
+			nameTextStyle: {
+				color: '#7fd3ff',
+				padding: [0, 0, 0, -10]
+			},
+			splitLine: {
+				lineStyle: {
+					color: 'rgba(71, 146, 255, .15)'
+				}
+			},
+			axisLine: {
+				show: false
+			},
+			axisTick: {
+				show: false
+			},
+			axisLabel: {
+				color: '#8fd7ff'
+			}
+		},
+		series: [{
+			name: '实时客流',
+			type: 'line',
+			smooth: true,
+			symbol: 'circle',
+			symbolSize: 10,
+			data: scenicSpotTrend,
+			lineStyle: {
+				color: '#35D8FF',
+				width: 4
+			},
+			itemStyle: {
+				color: '#F7C35F',
+				borderColor: '#ffffff',
+				borderWidth: 2
+			},
+			areaStyle: {
+				color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+					offset: 0,
+					color: 'rgba(53, 216, 255, .45)'
+				}, {
+					offset: 1,
+					color: 'rgba(53, 216, 255, .05)'
+				}])
+			}
+		}]
+	};
+	rightTopChart.setOption(rightTopOption);
+	var scenicSpotNames = ['洱海生态廊道', '玉龙雪山', '丽江古城', '泸沽湖', '西双版纳'];
+	var scenicSpotValues = [96, 92, 88, 84, 79];
+	var scenicSpotBarColors = ['#00f0ff', '#22d0ff', '#35b6ff', '#4f97ff', '#ffd84d'];
+	function buildRightTopCompareSeriesData(values) {
+		return values.map(function(value, index) {
+			return {
+				value: value,
+				itemStyle: {
+					color: new echarts.graphic.LinearGradient(1, 0, 0, 0, [{
+						offset: 0,
+						color: scenicSpotBarColors[index]
+					}, {
+						offset: 1,
+						color: 'rgba(10, 64, 146, .55)'
+					}]),
+					shadowBlur: 12,
+					shadowColor: scenicSpotBarColors[index]
+				}
+			};
+		});
+	}
+	var rightTopCompareOption = {
+		tooltip: {
+			trigger: 'axis',
+			axisPointer: {
+				type: 'shadow',
+				shadowStyle: {
+					color: 'rgba(88, 184, 255, .08)'
+				}
+			},
+			formatter: function(params) {
+				var point = params[1] || params[0];
+				return point.name + '<br/>热度指数：' + point.value;
+			}
+		},
+		grid: {
+			top: 18,
+			left: 110,
+			right: 50,
+			bottom: 18
+		},
+		xAxis: {
+			type: 'value',
+			max: 100,
+			splitNumber: 4,
+			axisLabel: {
+				color: '#7fcfff'
+			},
+			axisLine: {
+				show: false
+			},
+			axisTick: {
+				show: false
+			},
+			splitLine: {
+				lineStyle: {
+					color: 'rgba(88, 184, 255, .12)'
+				}
+			}
+		},
+		yAxis: {
+			type: 'category',
+			inverse: true,
+			data: scenicSpotNames,
+			axisLine: {
+				show: false
+			},
+			axisTick: {
+				show: false
+			},
+			axisLabel: {
+				color: '#d9f4ff',
+				fontSize: 15
+			}
+		},
+		series: [{
+			type: 'bar',
+			data: scenicSpotNames.map(function() { return 100; }),
+			barWidth: 18,
+			barGap: '-100%',
+			itemStyle: {
+				color: 'rgba(255, 255, 255, .06)',
+				borderRadius: 20
+			},
+			silent: true,
+			z: 1
+		}, {
+			type: 'bar',
+			data: buildRightTopCompareSeriesData(scenicSpotValues),
+			barWidth: 18,
+			itemStyle: {
+				borderRadius: 20
+			},
+			label: {
+				show: true,
+				position: 'right',
+				color: '#ffffff',
+				fontSize: 16,
+				fontWeight: 'bold',
+				formatter: '{c}'
+			},
+			emphasis: {
+				itemStyle: {
+					shadowBlur: 20,
+					shadowColor: 'rgba(255,255,255,.35)'
+				},
+				label: {
+					color: '#ffd84d'
+				}
+			},
+			z: 3
+		}, {
+			type: 'pictorialBar',
+			symbol: 'circle',
+			symbolSize: [18, 18],
+			symbolPosition: 'end',
+			data: scenicSpotValues.map(function(value, index) {
+				return {
+					value: value,
+					itemStyle: {
+						color: scenicSpotBarColors[index],
+						shadowBlur: 14,
+						shadowColor: scenicSpotBarColors[index]
+					}
+				};
+			}),
+			z: 4
+		}]
+	};
+	rightTopCompareChart.setOption(rightTopCompareOption);
 	setInterval(function() {
 		echartdata[0] = Math.floor(Math.random() * 1000);
 		echartdata[1] = Math.floor(Math.random() * 1000);
@@ -1155,7 +1369,26 @@ function guapaizhanbi(obj, Index) {
 		option.series[0].data[1].value = echartdata[1];
 		option.series[0].data[2].value = echartdata[2];
 		myChart.setOption(option);
-		rightTopChart.setOption(option);
+		scenicSpotTrend.shift();
+		scenicSpotTrend.push(Math.floor(Math.random() * 700) + 1200);
+		rightTopOption.series[0].data = scenicSpotTrend;
+		rightTopChart.setOption(rightTopOption);
+		scenicSpotValues = scenicSpotValues.map(function(value, index) {
+			var delta = index === 0 ? 0 : Math.floor(Math.random() * 3) - 1;
+			return Math.max(72, Math.min(98, value + delta));
+		});
+		rightTopCompareOption.series[1].data = buildRightTopCompareSeriesData(scenicSpotValues);
+		rightTopCompareOption.series[2].data = scenicSpotValues.map(function(value, index) {
+			return {
+				value: value,
+				itemStyle: {
+					color: scenicSpotBarColors[index],
+					shadowBlur: 14,
+					shadowColor: scenicSpotBarColors[index]
+				}
+			};
+		});
+		rightTopCompareChart.setOption(rightTopCompareOption);
 	}, 5000)
 
 	// 1-4月份办理总数
@@ -1163,8 +1396,6 @@ function guapaizhanbi(obj, Index) {
 	for (let i = 0; i < mothnumber.length; i++) {
 		$("#cp").find("p").eq(i).width(450 * (mothnumber[i] / 5000));
 		$("#cp").find("p").eq(i).find("span").text(mothnumber[i]);
-		$("#cp-right").find("p").eq(i).width(450 * (mothnumber[i] / 5000));
-		$("#cp-right").find("p").eq(i).find("span").text(mothnumber[i]);
 	}
 	// 五月份办理总数
 	let six = mothnumber[5];
@@ -1173,8 +1404,6 @@ function guapaizhanbi(obj, Index) {
 		six += 1;
 		$("#cp").find("p").eq(5).width(450 * (4500 / 5000));
 		$("#cp").find("p").eq(5).find("span").text(six);
-		$("#cp-right").find("p").eq(5).width(450 * (4500 / 5000));
-		$("#cp-right").find("p").eq(5).find("span").text(six);
 	}, 20000)
 }());
 //入驻动态滚动

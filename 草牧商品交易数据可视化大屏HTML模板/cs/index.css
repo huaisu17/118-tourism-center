@@ -132,13 +132,26 @@ text{ font-size:18px; display:inline-block;}
 .default{ height:58px; color:#fff;line-height: 58px;margin-top:26px;font-size:24px;}
 .default span{ display: inline-block; float:left;width:208px; text-align: center;}
 .bodyRightTopBG{ margin-left:8px;width:1248px;height:370px;background: url("../images/001.png") no-repeat; }
-.bodyRightTopBG .bodyLeftBottomLeft,
-.bodyRightTopBG .bodyLeftBottomRight{ height:100%; position:relative; }
-.bodyRightTopBG .bodyLeftBottomLeft .childtitle,
-.bodyRightTopBG .bodyLeftBottomRight .childtitle{ position:absolute; top:18px; left:12px; }
-.bodyRightTopBG #right-top-bottom{ width:730px; height:300px; margin-top:58px; margin-left:-100px; }
-.bodyRightTopBG .bodyLeftBottomRight .t-right{ width:560px; height:300px; margin-top:58px; }
-.bodyRightTopBG .bodyLeftBottomRight .t-right ul{ top:20px; }
+.bodyRightTopBG .rightTopPanel{ float:left; width:50%; height:100%; position:relative; }
+.bodyRightTopBG .rightTopPanel .childtitle{ position:absolute; top:18px; left:12px; }
+.bodyRightTopBG .rightTopChartPanel{ padding-right:16px; box-sizing:border-box; }
+.bodyRightTopBG .rightTopComparePanel{ padding-left:16px; box-sizing:border-box; }
+.bodyRightTopBG #right-top-bottom{ width:100%; height:278px; margin-top:70px; margin-left:0; }
+.bodyRightTopBG .rightTopComparePanel .t-right{ display:none; }
+.bodyRightTopBG #right-top-compare{ width:100%; height:340px; margin-top:20px; }
+.bodyRightTopBG .rightTopCompareLegend{ display:flex; justify-content:center; gap:14px; margin-top:-8px; flex-wrap:wrap; }
+.bodyRightTopBG .rightTopCompareLegendItem{ min-width:86px; padding:8px 10px; border:1px solid rgba(83,180,255,.22); background:rgba(11,31,79,.38); display:flex; flex-direction:column; align-items:center; color:#8fd7ff; font-size:13px; line-height:1.2; cursor:pointer; transition:.2s ease; }
+.bodyRightTopBG .rightTopCompareLegendItem:hover,
+.bodyRightTopBG .rightTopCompareLegendItem.active{ background:rgba(26,63,148,.52); border-color:rgba(255,255,255,.4); transform:translateY(-2px); }
+.bodyRightTopBG .rightTopCompareLegendTop{ display:flex; align-items:center; }
+.bodyRightTopBG .rightTopCompareLegendSwatch{ width:12px; height:12px; border-radius:50%; margin-right:8px; box-shadow:0 0 10px currentColor; }
+.bodyRightTopBG .rightTopCompareLegendValue{ margin-top:6px; font-size:18px; font-weight:bold; }
+.bodyRightTopBG .rightTopCompareDetail{ position:absolute; right:0; top:72px; width:180px; padding:14px 16px; background:rgba(4,18,52,.82); border:1px solid rgba(101,196,255,.26); box-shadow:0 0 18px rgba(0,180,255,.18); backdrop-filter:blur(3px); opacity:0; pointer-events:none; transform:translateX(12px); transition:.2s ease; }
+.bodyRightTopBG .rightTopCompareDetail.show{ opacity:1; transform:translateX(0); }
+.bodyRightTopBG .rightTopCompareDetailTitle{ font-size:18px; font-weight:bold; margin-bottom:10px; }
+.bodyRightTopBG .rightTopCompareDetailRow{ display:flex; justify-content:space-between; color:#b7e6ff; font-size:13px; padding:6px 0; border-bottom:1px solid rgba(255,255,255,.08); }
+.bodyRightTopBG .rightTopCompareDetailRow:last-child{ border-bottom:none; }
+.bodyRightTopBG .rightTopCompareDetailValue{ font-weight:bold; }
 .liushuihaoul{height:308px;overflow: hidden;position: relative;}
 .winwatch{float:left;width:1162px;height:804px;margin-right: 36px;}
 .pinjiawatch{height:804px;float:left;width:1375px;}
