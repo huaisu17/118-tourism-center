@@ -220,13 +220,7 @@ text{ font-size:18px; display:inline-block;}
 .chengjiaoliang span{ display:inline-block;width:28px; height:100%;  color:#62C0EB; }
 #CJpie{ position: absolute; right:0; width:478px; height:100%;}
 /*成交量实时监控*/
-#timebar{ position: relative;height:80px; width:794px; margin:80px auto 0 ;padding:15px;}
-#timebar .kedu{position: relative;margin-left:7px; width:780px;margin-top: 40px;}
-#timebar .kedu li{ position: absolute;bottom:0;float:left; transition:2s ease;width:3px; height:6px;margin-right: 10px; background: #3BFE91;}
-#timebar .kuang{ box-sizing:border-box;width:794px;height:34px;border:2px solid #3BFE91;border-radius:0 25px 25px 0/0 25px 25px 0; padding:5px;}
-#timebar .tianchong{ width:780px;height:20px; transition:2s ease;background: linear-gradient(to right,#015B71,#3BFE90); border-radius:0 20px 20px 0/0 20px 20px 0;}
-#timebar span{ position: absolute;top: 0;left:150px;transition:2s ease;display:inline-block;width:380px;text-align: center;color:#3BFE91;margin-left:-150px; font-size: 22px;}
-#cjliang{ height:500px; }
+#cjliang{ height:620px; margin-top:56px; }
 /*底部foot--结束*/
 
 /*公共部分--开始*/

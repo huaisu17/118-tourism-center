@@ -1463,7 +1463,20 @@ function guapaizhanbi(obj, Index) {
 }());
 //入驻动态滚动
 (function() {
-	var monthlyDispatchStatus = RZstatus.slice(0, 12);
+	var monthlyDispatchStatus = [
+		"一月月调度情况",
+		"二月月调度情况",
+		"三月月调度情况",
+		"四月月调度情况",
+		"五月月调度情况",
+		"六月月调度情况",
+		"七月月调度情况",
+		"八月月调度情况",
+		"九月月调度情况",
+		"十月月调度情况",
+		"十一月月调度情况",
+		"十二月月调度情况"
+	];
 	$(".bodyRightBottom .moveul").html("");
 	for (var i = 0; i < monthlyDispatchStatus.length; i++) {
 		$(".bodyRightBottom .moveul").html((index, html) => {
@@ -2114,19 +2127,4 @@ function guapaizhanbi(obj, Index) {
 	};
 	// 使用刚指定的配置项和数据显示图表。
 	myChart.setOption(option);
-	var W = 0;
-	var H = 0;
-	$(".kedu").find("li").each(function(i) {
-		$(this).css("left", i * 13)
-	})
-	W = 390;
-	H = 5;
-	$("#pjtime").css({
-		"left": W,
-		"margin-left": -150
-	});
-	$("#pjtime").text("师生评价趋势：07:00 时段最高")
-	$(".tianchong").eq(0).width(W)
-	$(".kedu").find("li").css("height", 6)
-	$(".kedu").find("li").eq(H).css("height", 12)
 }());
