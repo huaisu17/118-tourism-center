@@ -1413,26 +1413,28 @@ function guapaizhanbi(obj, Index) {
 //入驻动态滚动
 (function() {
 	for (var i = 0; i < RZstatus.length; i++) {
-		$(".huiYuanLst .moveul").html((index, html) => {
+		$(".bodyRightBottom .moveul").html((index, html) => {
 			return html += `<li><i></i><span>${RZstatus[i]}</span></li>`
 		})
 	}
 	//获取实时数据后循环创建流水号滚动列表
-	var siz1 = $(".huiYuanLst .moveul").find("li").length;
-	$(".huiYuanLst .moveul").css('height', $(".huiYuanLst .moveul").find("li")[0].offsetHeight * 35);
-	$(".huiYuanLst .moveul").html(function(index, value) {
+	var rowHeight = $(".bodyRightBottom .moveul").find("li").eq(0).outerHeight(true) || 66;
+	var siz1 = $(".bodyRightBottom .moveul").find("li").length;
+	$(".bodyRightBottom .moveul").css('height', siz1 * rowHeight);
+	$(".bodyRightBottom .moveul").html(function(index, value) {
 		return value + value;
 	})
 	setInterval(function() {
-		$(".huiYuanLst .moveul").animate({
-			top: "-=35"
+		$(".bodyRightBottom .moveul").animate({
+			top: "-=" + rowHeight
 		}, 'slow', function() {
-			if ($(".huiYuanLst .moveul")[0].offsetTop <= -siz1 * 35) {
-				$(".huiYuanLst .moveul").css('top', 0);
+			if ($(".bodyRightBottom .moveul")[0].offsetTop <= -siz1 * rowHeight) {
+				$(".bodyRightBottom .moveul").css('top', 0);
 			}
 		})
 	}, 5300)
 }());
+
 // 成交动态滚动
 (function() {
 	setInterval(function() {
@@ -1470,10 +1472,11 @@ function guapaizhanbi(obj, Index) {
 }());
 //挂牌会员实时监控--仪表盘
 (function() {
-	var myChart1, myChart2, myChart3, option1 = {},
+	var myChart1, myChart2, myChart3, myChart4, option1 = {},
 		option2 = {},
-		option3 = {};
-	var data = [268, 5, 20]; //入驻，通过，申请三项数量
+		option3 = {},
+		option4 = {};
+	var data = [268, 88, 5, 20]; //申请，入驻，申请实名，通过实名
 	function YB(id, names, datas) {
 		var total = 325; //仪表盘总量
 		names = echarts.init($("#" + id)[0]);
@@ -1571,6 +1574,7 @@ function guapaizhanbi(obj, Index) {
 		names.setOption(option, true);
 	}
 	YB("yibiao1", myChart1, 268);
+	YB("yibiao4", myChart4, 88);
 	YB("yibiao2", myChart2, 5);
 	YB("yibiao3", myChart3, 20);
 	console.log(option1)
@@ -1582,10 +1586,12 @@ function guapaizhanbi(obj, Index) {
 		data[0] = Math.floor(Math.random() * 325)
 		data[1] = Math.floor(Math.random() * 325)
 		data[2] = Math.floor(Math.random() * 325)
+		data[3] = Math.floor(Math.random() * 325)
 		run();
 		YB("yibiao1", myChart1, data[0]);
-		YB("yibiao2", myChart2, data[1]);
-		YB("yibiao3", myChart3, data[2]);
+		YB("yibiao4", myChart4, data[1]);
+		YB("yibiao2", myChart2, data[2]);
+		YB("yibiao3", myChart3, data[3]);
 	}, 5000);
 	//方块格子动画高亮特效
 	$(".huiyuan").each(function(index) {
