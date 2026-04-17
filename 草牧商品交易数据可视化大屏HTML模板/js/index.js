@@ -1958,6 +1958,16 @@ function guapaizhanbi(obj, Index) {
 (function() {
 	// 基于准备好的dom，初始化echarts实例
 	var myChart = echarts.init($("#cjliang")[0]);
+	var evaluationExamples = [
+		"示例：早餐供应及时，排队时间较短",
+		"示例：菜品温度稳定，整体口感较好",
+		"示例：窗口服务响应快，补餐及时",
+		"示例：口味反馈一般，需继续优化",
+		"示例：食材新鲜度评价较高",
+		"示例：高峰时段等待时间偏长",
+		"示例：环境卫生和取餐秩序较好",
+		"示例：晚餐菜品丰富度反馈提升"
+	];
 	// 指定图表的配置项和数据
 	var option = {
 		title: {
@@ -2035,6 +2045,16 @@ function guapaizhanbi(obj, Index) {
 					width: "0.5"
 				}
 			},
+		},
+		tooltip: {
+			trigger: 'axis',
+			axisPointer: {
+				type: 'shadow'
+			},
+			formatter: function(params) {
+				var point = params[0];
+				return point.axisValue + '<br/>评价值：' + point.value + '<br/>' + evaluationExamples[point.dataIndex];
+			}
 		},
 		series: [{
 			name: '师生评价',
