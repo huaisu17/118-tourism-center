@@ -1427,9 +1427,11 @@ function guapaizhanbi(obj, Index) {
 }());
 //入驻动态滚动
 (function() {
-	for (var i = 0; i < RZstatus.length; i++) {
+	var monthlyDispatchStatus = RZstatus.slice(0, 12);
+	$(".bodyRightBottom .moveul").html("");
+	for (var i = 0; i < monthlyDispatchStatus.length; i++) {
 		$(".bodyRightBottom .moveul").html((index, html) => {
-			return html += `<li><i></i><span>${RZstatus[i]}</span></li>`
+			return html += `<li><i></i><span>${monthlyDispatchStatus[i]}</span></li>`
 		})
 	}
 	//获取实时数据后循环创建流水号滚动列表
