@@ -1304,6 +1304,12 @@ function guapaizhanbi(obj, Index) {
 			itemStyle: {
 				color: '#24d0be',
 				borderRadius: [20, 0, 0, 20]
+			},
+			label: {
+				show: true,
+				position: 'inside',
+				color: '#ffffff',
+				formatter: '{c}'
 			}
 		}, {
 			name: '生鲜',
@@ -1316,7 +1322,7 @@ function guapaizhanbi(obj, Index) {
 			},
 			label: {
 				show: true,
-				position: 'insideTop',
+				position: 'inside',
 				color: '#ffffff',
 				formatter: '{c}'
 			},
@@ -1333,7 +1339,7 @@ function guapaizhanbi(obj, Index) {
 			},
 			label: {
 				show: true,
-				position: 'insideTop',
+				position: 'inside',
 				color: '#ffffff',
 				formatter: '{c}'
 			},
