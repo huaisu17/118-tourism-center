@@ -1351,7 +1351,28 @@ function guapaizhanbi(obj, Index) {
 	for (let i = 0; i < mothnumber.length; i++) {
 		$("#cp").find("p").eq(i).width(450 * (mothnumber[i] / 4000));
 		$("#cp").find("p").eq(i).find("span").text(mothnumber[i]);
+		$("#cp").find("li").not(".line").eq(i).attr("title", $("#cp").find("li").not(".line").eq(i).find("> span").text() + " 订餐量：" + mothnumber[i]);
 	}
+	var selectedOrderIndex = 0;
+	var orderItems = $("#cp").find("li").not(".line");
+	function setOrderInteractiveState(index) {
+		orderItems.removeClass("is-active");
+		orderItems.find("p").removeClass("active");
+		orderItems.eq(index).addClass("is-active");
+		orderItems.eq(index).find("p").addClass("active");
+	}
+	setOrderInteractiveState(selectedOrderIndex);
+	orderItems.each(function(index) {
+		$(this).on("mouseenter", function() {
+			setOrderInteractiveState(index);
+		}).on("click", function() {
+			selectedOrderIndex = index;
+			setOrderInteractiveState(selectedOrderIndex);
+		});
+	});
+	$("#cp").on("mouseleave", function() {
+		setOrderInteractiveState(selectedOrderIndex);
+	});
 }());
 
 // 数据变化趋势左侧环状图
