@@ -205,15 +205,16 @@ function guapai(obj) {
 			itemHeight: 18 //图块高
 		},
 		grid: {
-			top: "10%",
+			top: "15%",
 			left: '1%', //折线框左边距
 			right: '10%', //折线框右边距
-			bottom: '20%', //折线框下边距
+			bottom: '1%', //折线框下边距
+			height: '300px',
 			containLabel: true
 		},
 		xAxis: {
 			type: 'category',
-			name: "巡检时段",
+			name: "时段",
 			data: ["9:00-10:00", "10:00-11:00", "11:00-12:00", "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00"],
 			nameTextStyle: { //坐标轴名称样式
 				color: "#fff",
@@ -245,7 +246,7 @@ function guapai(obj) {
 			splitNumber: 7,
 		},
 		yAxis: {
-			name: "排查单位数",
+			name: "单位数",
 			splitNumber: 8,
 			nameTextStyle: { //坐标轴名称样式
 				color: "#fff",
