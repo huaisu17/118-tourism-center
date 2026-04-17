@@ -1407,11 +1407,11 @@ function guapaizhanbi(obj, Index) {
 				}
 			},
 			data: [
-				{ value: 62, name: 'A供' },
-				{ value: 62, name: 'B供' },
-				{ value: 62, name: 'C供' },
-				{ value: 62, name: 'D供' },
-				{ value: 62, name: 'E供' },
+				{ value: 96, name: 'A供' },
+				{ value: 92, name: 'B供' },
+				{ value: 88, name: 'C供' },
+				{ value: 84, name: 'D供' },
+				{ value: 79, name: 'E供' },
 				{ value: 0, name: "", label: { show: false }, labelLine: { show: false } },
 				{ value: 0, name: "", label: { show: false }, labelLine: { show: false } },
 				{ value: 0, name: "", label: { show: false }, labelLine: { show: false } },
