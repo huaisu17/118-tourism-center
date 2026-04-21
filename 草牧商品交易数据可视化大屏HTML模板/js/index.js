@@ -1,4 +1,122 @@
 var siz2;
+var regionalElevation = {
+	"\u5e7f\u5dde\u5e02": 35,
+	"\u6df1\u5733\u5e02": 45,
+	"\u73e0\u6d77\u5e02": 20,
+	"\u6c55\u5934\u5e02": 25,
+	"\u4f5b\u5c71\u5e02": 30,
+	"\u97f6\u5173\u5e02": 420,
+	"\u6cb3\u6e90\u5e02": 360,
+	"\u6885\u5dde\u5e02": 320,
+	"\u60e0\u5dde\u5e02": 140,
+	"\u6c55\u5c3e\u5e02": 85,
+	"\u4e1c\u839e\u5e02": 25,
+	"\u4e2d\u5c71\u5e02": 15,
+	"\u6c5f\u95e8\u5e02": 95,
+	"\u9633\u6c5f\u5e02": 90,
+	"\u6e5b\u6c5f\u5e02": 55,
+	"\u8302\u540d\u5e02": 110,
+	"\u8087\u5e86\u5e02": 210,
+	"\u6e05\u8fdc\u5e02": 430,
+	"\u6f6e\u5dde\u5e02": 120,
+	"\u63ed\u9633\u5e02": 80,
+	"\u4e91\u6d6e\u5e02": 260
+};
+var elevationColorStops = [
+	{ value: 0, color: [34, 166, 179] },
+	{ value: 80, color: [47, 196, 125] },
+	{ value: 180, color: [147, 208, 70] },
+	{ value: 300, color: [242, 198, 64] },
+	{ value: 450, color: [235, 129, 52] }
+];
+
+var regionalLabelTweaks = {
+	"广州市": { dx: 0, dy: 0, fontSize: 18 },
+	"佛山市": { dx: 4, dy: 8, fontSize: 16 },
+	"东莞市": { dx: 0, dy: -2, fontSize: 14 },
+	"深圳市": { dx: 34, dy: 18, fontSize: 14 },
+	"中山市": { dx: 10, dy: 0, fontSize: 14 },
+	"珠海市": { dx: 0, dy: 0, fontSize: 14 },
+	"江门市": { dx: 0, dy: -10, fontSize: 15 },
+	"惠州市": { dx: 18, dy: 4, fontSize: 15 },
+	"肇庆市": { dx: -6, dy: -10, fontSize: 16 },
+	"汕头市": { dx: 5, dy: 15, fontSize: 14 },
+	"潮州市": { dx: 0, dy: 8, fontSize: 13 },
+	"揭阳市": { dx: -10, dy: 18, fontSize: 14 },
+	"汕尾市": { dx: 0, dy: 0, fontSize: 14 }
+};
+
+function normalizeRegionName(regionName) {
+	if (!regionName) {
+		return "";
+	}
+	return regionName.replace(/\s+/g, "").replace(/[?]+$/g, "");
+}
+
+function sanitizeRegionalMapPaths(svgElement) {
+	var paths = svgElement.querySelectorAll("path");
+	for (var i = 0; i < paths.length; i++) {
+		var regionName = normalizeRegionName(paths[i].getAttribute("name"));
+		var pathData = paths[i].getAttribute("d") || "";
+		if (regionName === "珠海市" && pathData.indexOf("M879,747.8") > -1) {
+			paths[i].setAttribute("d", pathData.split("M879,747.8")[0].trim());
+		}
+	}
+}
+
+function applyRegionalMapColors(svgElement) {
+	var paths = svgElement.querySelectorAll("path");
+	for (var i = 0; i < paths.length; i++) {
+		var fillColor = regionalPalette[i % regionalPalette.length];
+		paths[i].setAttribute("fill", fillColor);
+		paths[i].setAttribute("data-base-fill", fillColor);
+		paths[i].style.fill = fillColor;
+		paths[i].style.stroke = "#FFFFFF";
+		paths[i].style.strokeWidth = "2";
+		paths[i].style.transition = "fill .2s ease, stroke .2s ease, stroke-width .2s ease";
+	}
+}
+
+function appendRegionalMapLabels(svgElement) {
+	var oldLabels = svgElement.querySelectorAll(".regional-map-label");
+	for (var i = 0; i < oldLabels.length; i++) {
+		oldLabels[i].remove();
+	}
+
+	var paths = svgElement.querySelectorAll("path");
+	for (var j = 0; j < paths.length; j++) {
+		var path = paths[j];
+		var regionName = normalizeRegionName(path.getAttribute("name"));
+		if (!regionName) {
+			continue;
+		}
+		var box = path.getBBox();
+		if (!box.width || !box.height) {
+			continue;
+		}
+
+		var label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+		var tweak = regionalLabelTweaks[regionName] || {};
+		var fontSize = tweak.fontSize || Math.max(10, Math.min(18, Math.min(box.width / 3.2, box.height / 2.3)));
+		var x = box.x + box.width / 2 + (tweak.dx || 0);
+		var y = box.y + box.height / 2 + (tweak.dy || 0);
+		label.setAttribute("x", x);
+		label.setAttribute("y", y);
+		label.setAttribute("text-anchor", "middle");
+		label.setAttribute("dominant-baseline", "middle");
+		label.setAttribute("class", "regional-map-label");
+		label.setAttribute("fill", "#ffffff");
+		label.setAttribute("font-size", fontSize.toFixed(1));
+		label.setAttribute("font-weight", "700");
+		label.setAttribute("stroke", "rgba(7, 31, 77, 0.85)");
+		label.setAttribute("stroke-width", "1.4");
+		label.setAttribute("paint-order", "stroke fill");
+		label.setAttribute("pointer-events", "none");
+		label.textContent = regionName;
+		svgElement.appendChild(label);
+	}
+}
+
 /*数据初始化-开始*/
 function bindRegionalMapHover() {
 	var path = document.querySelectorAll("#map1 path");
@@ -9,15 +127,23 @@ function bindRegionalMapHover() {
 			path[i].style.strokeWidth = "2.5";
 		}
 		path[i].onmouseleave = function() {
-			path[i].style.fill = "";
+			var baseFill = path[i].getAttribute("data-base-fill") || path[i].getAttribute("fill") || "";
+			path[i].style.fill = baseFill;
 			path[i].style.strokeWidth = "2";
-			path[i].style.stroke = "";
+			path[i].style.stroke = "#FFFFFF";
 		}
 	}
 }
 
 function renderRegionalMap(svgMarkup) {
 	$("#map1").html(svgMarkup);
+	var svgElement = document.querySelector("#map1 svg");
+	if (!svgElement) {
+		return;
+	}
+	sanitizeRegionalMapPaths(svgElement);
+	applyRegionalMapColors(svgElement);
+	appendRegionalMapLabels(svgElement);
 	bindRegionalMapHover();
 }
 

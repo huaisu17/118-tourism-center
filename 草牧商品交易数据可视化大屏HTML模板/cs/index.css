@@ -86,10 +86,11 @@ html{width:100%;height:100%;}
 .mapmain{position: absolute;z-index: 2;top:48px;width:100%;height:100%;}
 .map{position: relative;top:-105px;left:10px; width:100%;height:100%;}
 .map>div:first-child{ z-index:0; }
-#map1{ left:-12px; }
+#map1{ left:-55px; top:-200px; transform-origin:center center;}
 #sun{background:url(../images/a.png) no-repeat;animation:light 2s linear infinite;height:100%;background-size:100% 100%;}
 /*北海地图svg样式*/
 svg{ margin:0; padding-top:100px; width:100%; height:1000px; } 
+#map1 svg{ width:112%; height:1120px; }
 .str0 {stroke:#fff;stroke-width:1}
 .str{ stroke:#fff;stroke-width:1 }
 .str1 {stroke:#fff;stroke-width:1}  
