@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<title> 智校数据综合展示中心</title>
 	<!-- <meta http-equiv=refresh content="1"> -->
 	<link rel="stylesheet" href="cs/index.css">
@@ -128,7 +129,7 @@
 					<div class="childtitle"><h2>区域数据分布</h2></div>
 					<div class="navbar">
 						<span class="active">全国分布</span>
-						<span>北海区域</span>
+						<span>广东省</span>
 						<span>大盘走势</span>
 					</div>
 					<!-- 区域分布-开始 -->
@@ -379,3 +380,24 @@
 </body>
 </html>
 <script src="js/index.js"></script>
+<script>
+	(function () {
+		var DESIGN_WIDTH = 3840;
+		var DESIGN_HEIGHT = 2160;
+		var screen = document.querySelector(".content");
+		if (!screen) return;
+
+		function fitScreen() {
+			var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+			var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+			var scale = Math.min(viewportWidth / DESIGN_WIDTH, viewportHeight / DESIGN_HEIGHT);
+			var offsetX = (viewportWidth - DESIGN_WIDTH * scale) / 2;
+			var offsetY = (viewportHeight - DESIGN_HEIGHT * scale) / 2;
+
+			screen.style.transform = "translate(" + offsetX + "px," + offsetY + "px) scale(" + scale + ")";
+		}
+
+		fitScreen();
+		window.addEventListener("resize", fitScreen);
+	})();
+</script>

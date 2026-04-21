@@ -1,6 +1,27 @@
 var siz2;
 /*数据初始化-开始*/
-$("#map1").html(beihai)
+function bindRegionalMapHover() {
+	var path = document.querySelectorAll("#map1 path");
+	for (let i = 0; i < path.length; i++) {
+		path[i].onmouseenter = function() {
+			path[i].style.fill = "#6AE5E5";
+			path[i].style.stroke = "#3246FB";
+			path[i].style.strokeWidth = "2.5";
+		}
+		path[i].onmouseleave = function() {
+			path[i].style.fill = "";
+			path[i].style.strokeWidth = "2";
+			path[i].style.stroke = "";
+		}
+	}
+}
+
+function renderRegionalMap(svgMarkup) {
+	$("#map1").html(svgMarkup);
+	bindRegionalMapHover();
+}
+
+renderRegionalMap(beihai);
 //中间板块切换（默认显示中国地图）
 $(".bodyMiddle .navbar").find("span").each(function(index, item) {
 	$(this).click(function() {
@@ -56,20 +77,6 @@ $(".bodyRightTop .navbar").find("span").each(function(index, item) {
 })
 
 //北海地图hove样式
-var path = document.getElementsByTagName("path");
-for (let i = 0; i < path.length; i++) {
-	path[i].onmouseenter = function() {
-		path[i].style.fill = "#6AE5E5";
-		path[i].style.stroke = "#3246FB";
-		path[i].style.strokeWidth = "2.5";
-
-	}
-	path[i].onmouseleave = function() {
-		path[i].style.fill = "";
-		path[i].style.strokeWidth = "2";
-		path[i].style.stroke = "";
-	}
-}
 //牧草产能区域分布
 for (var i = 0; i < ChanNeng.length; i++) {
 	$("#list").html(function(index, html) {
