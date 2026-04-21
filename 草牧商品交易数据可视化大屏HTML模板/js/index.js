@@ -29,6 +29,42 @@ var elevationColorStops = [
 	{ value: 300, color: [242, 198, 64] },
 	{ value: 450, color: [235, 129, 52] }
 ];
+var nationalElevationData = [
+	{ name: "\u5317\u4eac", value: 45 },
+	{ name: "\u5929\u6d25", value: 8 },
+	{ name: "\u4e0a\u6d77", value: 4 },
+	{ name: "\u91cd\u5e86", value: 400 },
+	{ name: "\u6cb3\u5317", value: 120 },
+	{ name: "\u6cb3\u5357", value: 110 },
+	{ name: "\u4e91\u5357", value: 1980 },
+	{ name: "\u8fbd\u5b81", value: 150 },
+	{ name: "\u9ed1\u9f99\u6c5f", value: 220 },
+	{ name: "\u6e56\u5357", value: 210 },
+	{ name: "\u5b89\u5fbd", value: 120 },
+	{ name: "\u5c71\u4e1c", value: 45 },
+	{ name: "\u65b0\u7586", value: 1280 },
+	{ name: "\u6c5f\u82cf", value: 18 },
+	{ name: "\u6d59\u6c5f", value: 160 },
+	{ name: "\u6c5f\u897f", value: 170 },
+	{ name: "\u6e56\u5317", value: 160 },
+	{ name: "\u5e7f\u897f", value: 260 },
+	{ name: "\u7518\u8083", value: 1280 },
+	{ name: "\u5c71\u897f", value: 1000 },
+	{ name: "\u5185\u8499\u53e4", value: 1050 },
+	{ name: "\u9655\u897f", value: 900 },
+	{ name: "\u5409\u6797", value: 250 },
+	{ name: "\u798f\u5efa", value: 230 },
+	{ name: "\u8d35\u5dde", value: 1100 },
+	{ name: "\u5e7f\u4e1c", value: 180 },
+	{ name: "\u9752\u6d77", value: 3000 },
+	{ name: "\u897f\u85cf", value: 4500 },
+	{ name: "\u56db\u5ddd", value: 750 },
+	{ name: "\u5b81\u590f", value: 1100 },
+	{ name: "\u6d77\u5357", value: 180 },
+	{ name: "\u53f0\u6e7e", value: 500 },
+	{ name: "\u9999\u6e2f", value: 120 },
+	{ name: "\u6fb3\u95e8", value: 48 }
+];
 
 var regionalLabelTweaks = {
 	"广州市": { dx: 0, dy: 0, fontSize: 18 },
@@ -53,6 +89,42 @@ function normalizeRegionName(regionName) {
 	return regionName.replace(/\s+/g, "").replace(/[?]+$/g, "");
 }
 
+function rgbToHex(rgb) {
+	var hex = "#";
+	for (var i = 0; i < rgb.length; i++) {
+		var value = Math.max(0, Math.min(255, Math.round(rgb[i])));
+		var part = value.toString(16);
+		hex += part.length === 1 ? "0" + part : part;
+	}
+	return hex;
+}
+
+function interpolateColor(startColor, endColor, ratio) {
+	return [
+		startColor[0] + (endColor[0] - startColor[0]) * ratio,
+		startColor[1] + (endColor[1] - startColor[1]) * ratio,
+		startColor[2] + (endColor[2] - startColor[2]) * ratio
+	];
+}
+
+function getElevationColor(regionName) {
+	var elevation = regionalElevation[regionName];
+	if (typeof elevation !== "number") {
+		elevation = 80;
+	}
+
+	for (var i = 0; i < elevationColorStops.length - 1; i++) {
+		var currentStop = elevationColorStops[i];
+		var nextStop = elevationColorStops[i + 1];
+		if (elevation <= nextStop.value) {
+			var ratio = (elevation - currentStop.value) / (nextStop.value - currentStop.value);
+			return rgbToHex(interpolateColor(currentStop.color, nextStop.color, ratio));
+		}
+	}
+
+	return rgbToHex(elevationColorStops[elevationColorStops.length - 1].color);
+}
+
 function sanitizeRegionalMapPaths(svgElement) {
 	var paths = svgElement.querySelectorAll("path");
 	for (var i = 0; i < paths.length; i++) {
@@ -67,7 +139,8 @@ function sanitizeRegionalMapPaths(svgElement) {
 function applyRegionalMapColors(svgElement) {
 	var paths = svgElement.querySelectorAll("path");
 	for (var i = 0; i < paths.length; i++) {
-		var fillColor = regionalPalette[i % regionalPalette.length];
+		var regionName = normalizeRegionName(paths[i].getAttribute("name"));
+		var fillColor = getElevationColor(regionName);
 		paths[i].setAttribute("fill", fillColor);
 		paths[i].setAttribute("data-base-fill", fillColor);
 		paths[i].style.fill = fillColor;
@@ -563,6 +636,13 @@ function guapaizhanbi(obj, Index) {
 			}]
 		}, ]
 	};
+	if (option.visualMap) {
+		option.visualMap.text = ['4500m', '0m'];
+		option.series[0].data = nationalElevationData;
+		option.tooltip.formatter = function(params) {
+		return params.name + '<br/>平均海拔：' + params.value + 'm';
+		};
+	}
 	myChart.setOption(option);
 	var Oitem = $(".bodyLeftTopGPZB");
 	var total = 650;
@@ -621,7 +701,7 @@ function guapaizhanbi(obj, Index) {
 		visualMap: { //视觉映射组件()
 			type: "continuous", //连续型
 			min: 0,
-			max: 150,
+			max: 4500,
 			left: 990,
 			top: 800,
 			text: ['150', '0'], // 文本，默认为数值文本
@@ -638,7 +718,7 @@ function guapaizhanbi(obj, Index) {
 			//align:"left",
 			//inverse: true, //反向
 			inRange: { //地图颜色变化
-				color: ['#3246FB', '#24DD57', '#FDD52C']
+				color: ['#22A6B3', '#2FC47D', '#93D046', '#F2C640', '#EB8134']
 			}
 			// outOfRange:{
 			// 	symbolSize: [100, 100]
@@ -782,6 +862,11 @@ function guapaizhanbi(obj, Index) {
 				value: Math.round(Math.random() * 100)
 			}]
 		}],
+	};
+	option.visualMap.text = ['4500m', '0m'];
+	option.series[0].data = nationalElevationData;
+	option.tooltip.formatter = function(params) {
+		return params.name + '<br/>平均海拔：' + params.value + 'm';
 	};
 	myChart.setOption(option);
 	myChart.on('mouseover', function(params) {
