@@ -1797,6 +1797,55 @@ function guapaizhanbi(obj, Index) {
 		})
 	}
 	//获取实时数据后循环创建流水号滚动列表
+	monthlyDispatchStatus = [{
+		name: "一月月调度情况",
+		url: "month-detail.html?month=1"
+	}, {
+		name: "二月月调度情况",
+		url: "month-detail.html?month=2"
+	}, {
+		name: "三月月调度情况",
+		url: "month-detail.html?month=3"
+	}, {
+		name: "四月月调度情况",
+		url: "month-detail.html?month=4"
+	}, {
+		name: "五月月调度情况",
+		url: "month-detail.html?month=5"
+	}, {
+		name: "六月月调度情况",
+		url: "month-detail.html?month=6"
+	}, {
+		name: "七月月调度情况",
+		url: "month-detail.html?month=7"
+	}, {
+		name: "八月月调度情况",
+		url: "month-detail.html?month=8"
+	}, {
+		name: "九月月调度情况",
+		url: "month-detail.html?month=9"
+	}, {
+		name: "十月月调度情况",
+		url: "month-detail.html?month=10"
+	}, {
+		name: "十一月月调度情况",
+		url: "month-detail.html?month=11"
+	}, {
+		name: "十二月月调度情况",
+		url: "month-detail.html?month=12"
+	}];
+	$(".bodyRightBottom .moveul").html("");
+	for (var j = 0; j < monthlyDispatchStatus.length; j++) {
+		$(".bodyRightBottom .moveul").html((index, html) => {
+			return html += `<li data-url="${monthlyDispatchStatus[j].url}"><i></i><span>${monthlyDispatchStatus[j].name}</span></li>`
+		})
+	}
+	$(".bodyRightBottom .moveul").off("click.monthlyDispatch").on("click.monthlyDispatch", "li", function() {
+		var url = $(this).data("url");
+		if (url) {
+			window.location.href = url;
+		}
+	});
 	var rowHeight = $(".bodyRightBottom .moveul").find("li").eq(0).outerHeight(true) || 66;
 	var siz1 = $(".bodyRightBottom .moveul").find("li").length;
 	$(".bodyRightBottom .moveul").css('height', siz1 * rowHeight);

@@ -161,6 +161,7 @@ text{ font-size:18px; display:inline-block;}
 .bodyRightBottom .rightBottomRuzhu .contgundong{position:relative;top:-60px;height:415px;overflow:hidden;}
 .bodyRightBottom .rightBottomRuzhu .moveul{width:100%;}
 .bodyRightBottom .rightBottomRuzhu .moveul li{height:56px;line-height:56px;margin-bottom:10px;padding:0 18px;background:linear-gradient(90deg,rgba(31,74,178,.34),rgba(5,31,96,.45));border:1px solid rgba(98,205,255,.24);font-size:22px;color:#63D9FF;}
+.bodyRightBottom .rightBottomRuzhu .moveul li{cursor:pointer;}
 .bodyRightBottom .rightBottomRuzhu .moveul li:nth-child(odd){background:linear-gradient(90deg,rgba(21,109,188,.32),rgba(8,39,107,.5));}
 .bodyRightBottom .rightBottomRuzhu .moveul li i{margin-right:14px;vertical-align:middle;background:#FBED14;box-shadow:0 0 12px rgba(251,237,20,.5);}
 .bodyRightBottom .rightBottomRuzhu .moveul span{display:inline-block;width:calc(100% - 30px);vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
