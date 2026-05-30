@@ -1,0 +1,403 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title> 智校数据综合展示中心</title>
+	<!-- <meta http-equiv=refresh content="1"> -->
+	<link rel="stylesheet" href="../cs/index.css">
+	<script src="../js/jquery.js"></script>
+	<script src="../js/echarts.min.js"></script>
+	<script src="../js/can.js"></script>
+	<script src="../js/china.js"></script>
+	<script src="../js/vue.js"></script>
+	<script src="data.php"></script>
+	<script src="../js/beihai.js"></script>			
+</head>
+<body>
+	<div class="content">
+		<!-- 底层背景动画-开始 -->
+		<div id="animations">
+			<div class="animation animation1">
+				<div class="animate1"></div>
+				<div class="animate2"></div>
+				<div class="animate3"></div>
+			</div>
+			<div class="animation animation2">
+				<div class="animate1"></div>
+				<div class="animate2"></div>
+				<div class="animate3"></div>
+			</div>
+			<div class="animation animation3 fanzhuan">
+				<div class="animate1"></div>
+				<div class="animate2"></div>
+				<div class="animate3"></div>
+			</div>
+			<div class="animation animation4">
+				<div class="animate1"></div>
+				<div class="animate2"></div>
+				<div class="animate3"></div>
+			</div>
+			<div class="animation animation5 fanzhuan">
+				<div class="animate1"></div>
+				<div class="animate2"></div>
+				<div class="animate3"></div>
+			</div>
+			<div class="animation animation6">
+				<div class="animate1"></div>
+				<div class="animate2"></div>
+				<div class="animate3"></div>
+			</div>
+			<div class="animation animation7 fanzhuan">
+				<div class="animate1"></div>
+				<div class="animate2"></div>
+				<div class="animate3"></div>
+			</div>
+			<div class="animation animation8">
+				<div class="animate1"></div>
+				<div class="animate2"></div>
+				<div class="animate3"></div>
+			</div>
+			<div class="animation animation9 fanzhuan">
+				<div class="animate1"></div>
+				<div class="animate2"></div>
+				<div class="animate3"></div>
+			</div>
+			<div class="animation animation10">
+				<div class="animate1"></div>
+				<div class="animate2"></div>
+				<div class="animate3"></div>
+			</div>
+		</div>
+		<!-- 底层背景动画-结束 -->
+		<!-- 显示屏头部-开始 -->
+		<div id="head">
+			<!-- 时间日期 -->
+			<div class="getDate">
+				<span id="time">09:00:00</span>
+				<span id="week">星期三</span>
+				<span id="year">2018-07-28</span>
+			</div>
+			<!-- 天气状况 -->
+			<div class="weather">
+				<span id="sky">多云</span>
+				<span id="temperatur">35~28度</span>
+				<span id="air">空气质量</span>
+				<span id="state">优</span>
+			</div>
+			<!-- 大标题 -->
+			<h1> 智校数据综合展示中心 </h1>
+		</div>
+		<!-- 显示屏头部-结束 -->	
+		<!-- 显示屏中间-开始 -->
+		<div id="body">
+			<div class="bodyLeft rel">
+				<!-- 日管控情况汇总 / 采购总成本分析 -->
+				<div class="bodyLeftTop">
+					<div class="childtitle"><h2>日管控情况汇总</h2></div>
+					<div class="add" onclick="Show(this,'bodyLeft',2.8,'before')">+</div>
+					<div id="guapai" class="guapai"></div>
+					<!-- 采购总成本环图-开始 -->
+					<div class="yuyue">
+						<div class="yuyuejiankong">
+							<div class="childtitle leftTopCircleTitle"><h2>采购总成本分析</h2></div>
+							<div id="left-top-right-circle" class="left-top-right-circle"></div>
+						</div>
+					</div>
+					<!-- 采购总成本环图-结束 -->
+				</div>
+				<div class="bodyLeftBottom rel">
+					<!-- 膳食经费数据分析 / 订餐数据分析 -->
+					<div class="add" onclick="Show(this,'bodyLeft',2.8,'after')">+</div>
+					<div class="bodyLeftBottomLeft">
+						<div class="childtitle"><h2>膳食经费数据分析</h2></div>
+						<div id="left-bottom"></div>
+					</div>
+					<!-- 订餐数据分析-开始 -->
+					<div class="bodyLeftBottomRight rel">
+						<div class="childtitle"><h2>订餐数据分析</h2></div>
+						<div class="t-right" >
+							<div id="cp" class="order-analysis"></div>
+						</div>						
+					</div>
+					<!-- 订餐数据分析-结束 -->
+				</div>
+			</div>
+			<div class="bodyMiddle rel">
+				<div class="bodyMiddleChild">
+					<div class="add" onclick="Show(this,'bodyMiddle',1.8,'after')">+</div>
+					<div class="childtitle"><h2>区域数据分布</h2></div>
+					<div class="navbar">
+						<span class="active">全国分布</span>
+						<span>广东省</span>
+						<span>大盘走势</span>
+					</div>
+					<!-- 区域分布-开始 -->
+					<div class="mapmain">
+						<!-- 区域分布列表-开始 -->
+						<div><ul id="list"></ul></div>
+						<!-- 区域分布列表-结束 -->
+						<!-- 中国地图-开始 -->
+						<div class="map" id="map"></div>
+						<!-- 中国地图-结束 -->
+						<!-- 北海地图-开始 -->
+						<div class="map" id="map1"></div>
+						<!-- 北海地图-结束 -->
+						<!-- 大盘走势-开始 -->
+						<div class="map" id="map2"></div>
+						<!-- 大盘走势-结束 -->
+					</div>
+					<!-- 区域分布-结束 -->
+					<!-- 地图下方亮光动画-开始 -->
+					<div id="sun"></div>
+					<!-- 地图下方亮光动画-结束 -->
+				</div>
+			</div>
+			<div class="bodyRight">
+				<!-- 食材单价波动分析 / 学生营养情况分析 -->
+				<!-- 右上双图区域-开始 -->
+				<div class="bodyRightTop rel">
+					<div class="add" onclick="Show(this,'bodyRight',2.8,'before')">+</div>
+					<div class="bodyRightTopBG">
+						<div class="rightTopPanel rightTopChartPanel">
+							<div class="childtitle"><h2>食材单价波动分析</h2></div>
+							<div id="right-top-bottom"></div>
+						</div>
+						<div class="rightTopPanel rightTopComparePanel rel">
+							<div class="childtitle"><h2>学生营养情况分析</h2></div>
+							<div class="t-right" >
+								<ul id="cp-right">
+									<li class="line"></li>
+									<li>
+										<span>一月</span>
+										<div>
+											<p><i></i><span></span></p>
+										</div>
+									</li>
+									<li>
+										<span>二月</span>
+										<div>
+											<p><i></i><span></span></p>
+										</div>
+									</li>
+
+									<li>
+										<span>三月</span>
+										<div>
+											<p><i></i><span></span></p>
+										</div>
+									</li>
+									<li>
+										<span>四月</span>
+										<div>
+											<p><i></i><span></span></p>
+										</div>
+									</li>
+									<li>
+										<span>五月</span>
+										<div>
+											<p><i></i><span></span></p>
+										</div>
+									</li>
+									<li>
+										<span>六月</span>
+										<div>
+											<p><i></i><span></span></p>
+										</div>
+									</li>
+									<li>
+										<span>七月</span>
+										<div>
+											<p class="active"><i></i><span></span></p>
+										</div>
+									</li>
+									<li>
+										<span>八月</span>
+										<div>
+											<p><i></i><span></span></p>
+										</div>
+									</li>
+									<li>
+										<span>九月</span>
+										<div>
+											<p><i></i><span></span></p>
+										</div>
+									</li>
+									<li>
+										<span>十月</span>
+										<div>
+											<p><i></i><span></span></p>
+										</div>
+									</li>	
+									<li>
+										<span>十一月</span>
+										<div>
+											<p><i></i><span></span></p>
+										</div>
+									</li>
+									<li>
+										<span>十二月</span>
+										<div>
+											<p><i></i><span></span></p>
+										</div>
+									</li>	
+								</ul>
+							</div>						
+						</div>
+					</div>					
+				</div>
+				<!-- 右上双图区域-结束 -->
+				<!-- 右下双图区域-开始 -->
+				<div class="bodyRightBottom rel">
+					<!-- 供应商评分分析 / 月调度情况汇总 -->
+					<div class="childtitle"><h2>供应商评分分析</h2></div>
+					<div class="rightBottomRingChartWrap">
+						<div id="right-bottom-ring-chart"></div>
+					</div>
+					<div class="rightBottomSectionTitle"><h2>月调度情况汇总</h2></div>
+					<div class="rightBottomRuzhu">
+						<div class="contgundong">
+							<ul class="moveul"></ul>
+						</div>
+					</div>
+					<div class="add" onclick="Show(this,'bodyRight',2.8,'after')">+</div>	
+				</div>
+				<!-- 右下双图区域-结束 -->
+			</div>
+		</div>
+		<!-- 显示屏中间-结束 -->
+		<!-- 显示屏底部-开始 -->		
+		<div id="foot">
+			<!-- 周排查情况汇总-开始 -->
+			<div class="footparent0">
+				<!-- 周排查情况汇总 -->
+				<div class="footChild">
+					<div class="childtitle"><h2>周排查情况汇总</h2></div>
+					<div class="add" onclick="Show(this,'footparent0',2.8,'after')">+</div>
+					<!-- 指标卡1-开始 -->
+					<div class="huiYuanLst">
+						<div class="yibiao" id="yibiao1"></div>	
+						<div class="huiyuan">
+							<ul  class="fangkuai"></ul>
+							<span></span>
+							<p>总计排查单位</p>
+						</div>
+					</div>
+					<!-- 指标卡1-结束 -->
+					<!-- 指标卡2-开始 -->
+					<div class="huiYuanLst">
+						<div class="yibiao" id="yibiao4"></div>	
+						<div class="huiyuan">
+							<ul class="fangkuai"></ul>
+							<span></span>
+							<p>合格单位</p>
+						</div>
+					</div>
+					<!-- 指标卡2-结束 -->
+					<!-- 指标卡3-开始 -->
+					<div class="huiYuanLst huiYuanLst3">
+						<div class="yibiao" id="yibiao2"></div>	
+						<div class="huiyuan">
+							<ul  class="fangkuai"></ul>
+							<span></span>
+							<p>黄线问题</p>
+						</div>
+					</div>
+					<!-- 指标卡3-结束 -->
+					<!-- 指标卡4-开始 -->
+					<div class="huiYuanLst">
+						<div class="yibiao" id="yibiao3"></div>	
+						<div class="huiyuan">
+							<ul class="fangkuai"></ul>
+							<span></span>
+							<p>基础问题</p>
+						</div>
+					</div>
+					<!-- 指标卡4-结束 -->
+				</div>
+			</div>
+			<!-- 周排查情况汇总-结束 -->
+			<!-- 消费数据分析-开始 -->
+			<div class="footparent1">
+				<!-- 消费数据分析 -->
+				<div class="footChild">
+					<div class="childtitle"><h2>消费数据分析</h2></div>
+					<div class="add" onclick="Show(this,'footparent1',2.8,'after')">+</div>
+					<div id="jiage"></div>
+				</div>
+			</div>
+			<!-- 消费数据分析-结束 -->
+			<!-- 食材验收质量分析-开始 -->
+			<div class="footparent2">
+				<!-- 食材验收质量分析 -->
+				<div class="footChild">
+					<div class="childtitle"><h2>食材验收质量分析</h2></div>
+					<div class="add" onclick="Show(this,'footparent2',2.8,'after')">+</div>
+					<!-- 左侧分类统计-开始 -->
+					<div class="chengjiaoliang">
+						<div class="CJL clear">
+							<p></p>
+							<span>副食占比</span>
+							<ul class="fangkuai"></ul>
+						</div>
+						<div class="CJL clear">
+							<p></p>
+							<span>生鲜占比</span>
+							<ul class="fangkuai"></ul>
+						</div>
+						<div class="CJL clear">
+							<p></p>
+							<span>粮油占比</span>
+							<ul class="fangkuai"></ul>
+						</div>
+						<div class="CJL clear">
+							<p></p>
+							<span>其他占比</span>
+							<ul class="fangkuai"></ul>
+						</div>	
+					</div>
+					<!-- 左侧分类统计-结束 -->
+					<div id="CJpie"></div>	
+				</div>
+			</div>
+			<!-- 食材验收质量分析-结束 -->
+			<!-- 师生评价情况分析-开始 -->
+			<div class="footparent3">
+				<!-- 师生评价情况分析 -->
+				<div class="footChild">
+					<div class="childtitle"><h2>师生评价情况分析</h2></div>
+					<div class="add" onclick="Show(this,'footparent3',2.8,'after')">+</div>
+					<div id="cjliang"></div>
+				</div>
+			</div>
+			<!-- 师生评价情况分析-结束 -->
+		</div>	
+		<!-- 显示屏底部-结束 -->	
+		<div class="mask">
+			<div class="maskContent"></div>
+		</div>
+	</div>
+</body>
+</html>
+<script src="../js/index.js"></script>
+<script>
+	(function () {
+		var DESIGN_WIDTH = 3840;
+		var DESIGN_HEIGHT = 2160;
+		var screen = document.querySelector(".content");
+		if (!screen) return;
+
+		function fitScreen() {
+			var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+			var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+			var scale = Math.min(viewportWidth / DESIGN_WIDTH, viewportHeight / DESIGN_HEIGHT);
+			var offsetX = (viewportWidth - DESIGN_WIDTH * scale) / 2;
+			var offsetY = (viewportHeight - DESIGN_HEIGHT * scale) / 2;
+
+			screen.style.transform = "translate(" + offsetX + "px," + offsetY + "px) scale(" + scale + ")";
+		}
+
+		fitScreen();
+		window.addEventListener("resize", fitScreen);
+	})();
+</script>
