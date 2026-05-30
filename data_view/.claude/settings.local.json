@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(dot -Tpng ER图.md -o er-test.png)",
+      "Bash(python3 -c \"import graphviz; print\\('graphviz python lib available'\\)\")",
+      "Bash(python -c \"import graphviz; print\\('graphviz python lib available'\\)\")",
+      "Bash(python *)",
+      "Bash(conda --version)",
+      "Bash(scoop --version)",
+      "Bash(choco --version)"
     ]
   }
 }
