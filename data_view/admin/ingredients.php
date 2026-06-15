@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/../includes/auth.php';
 requireLogin();
 $pageTitle = '食材管理';
 $activeMenu = 'ingredients';

@@ -45,7 +45,7 @@ $user = currentUser();
         <?php if (isAdmin()): ?>
         <a class="nav-link <?php echo $activeMenu == 'users' ? 'active' : ''; ?>" href="users.php"><i class="bi bi-people"></i> 用户管理</a>
         <?php endif; ?>
-        <a class="nav-link" href="../dashboard/index.html" target="_blank"><i class="bi bi-tv"></i> 数据大屏</a>
+        <a class="nav-link" href="../dashboard/index.php" target="_blank"><i class="bi bi-tv"></i> 数据大屏</a>
         <a class="nav-link" href="logout.php"><i class="bi bi-box-arrow-right"></i> 退出登录</a>
     </nav>
 </div>

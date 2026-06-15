@@ -9,7 +9,9 @@
       "Bash(python *)",
       "Bash(conda --version)",
       "Bash(scoop --version)",
-      "Bash(choco --version)"
+      "Bash(choco --version)",
+      "Bash(\"/d/miniconda/Library/bin/graphviz/dot.exe\" -Tpng \"D:/school_work/big-data-view/web/118_center/data_view/118-tourism-center/草牧商品交易数据可视化大屏HTML模板/118-tourism-center/data_view/docs/ER图.dot\" -o \"D:/school_work/big-data-view/web/118_center/data_view/118-tourism-center/草牧商品交易数据可视化大屏HTML模板/118-tourism-center/data_view/docs/er-diagram.png\")",
+      "Bash(\"/d/miniconda/Library/bin/graphviz/dot.exe\" -Tsvg \"D:/school_work/big-data-view/web/118_center/data_view/118-tourism-center/草牧商品交易数据可视化大屏HTML模板/118-tourism-center/data_view/docs/ER图.dot\" -o \"D:/school_work/big-data-view/web/118_center/data_view/118-tourism-center/草牧商品交易数据可视化大屏HTML模板/118-tourism-center/data_view/docs/er-diagram.svg\")"
     ]
   }
 }

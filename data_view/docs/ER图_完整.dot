@@ -1,0 +1,368 @@
+digraph ER {
+    graph [fontname="Microsoft YaHei", fontsize=12, rankdir=TB,
+           bgcolor=white, margin=0, nodesep=0.35, ranksep=0.9];
+    node [fontname="Microsoft YaHei", fontsize=9,
+          shape=rectangle, style=filled, fillcolor="#f8f9fa",
+          width=0, height=0, margin="0.12,0.06"];
+    edge [fontname="Microsoft YaHei", fontsize=9,
+          arrowhead=none, color="#333333"];
+
+    /* ============================================================
+       第一层：区域
+       ============================================================ */
+    Region [label="区域"];
+    reg_id [shape=ellipse, label="区域ID", fillcolor=white];
+    reg_name [shape=ellipse, label="区域名称", fillcolor=white];
+    Region -> reg_id [len=0.01];
+    Region -> reg_name [len=0.01];
+
+    /* ============================================================
+       第二层：学校、供应商、食材分类
+       ============================================================ */
+    { rank=same;
+      School [label="学校"];
+      Supplier [label="供应商"];
+      IngCat [label="食材分类"];
+    }
+
+    School -> sch_id [len=0.01];
+    School -> sch_regid [len=0.01];
+    School -> sch_name [len=0.01];
+    School -> sch_type [len=0.01];
+    sch_id [shape=ellipse, label="学校ID", fillcolor=white];
+    sch_regid [shape=ellipse, label="区域ID", fillcolor=white];
+    sch_name [shape=ellipse, label="学校名称", fillcolor=white];
+    sch_type [shape=ellipse, label="学校类型", fillcolor=white];
+
+    Supplier -> sup_id [len=0.01];
+    Supplier -> sup_name [len=0.01];
+    Supplier -> sup_score [len=0.01];
+    Supplier -> sup_grade [len=0.01];
+    sup_id [shape=ellipse, label="供应商ID", fillcolor=white];
+    sup_name [shape=ellipse, label="供应商名称", fillcolor=white];
+    sup_score [shape=ellipse, label="综合评分", fillcolor=white];
+    sup_grade [shape=ellipse, label="评级", fillcolor=white];
+
+    IngCat -> cat_id [len=0.01];
+    IngCat -> cat_name [len=0.01];
+    cat_id [shape=ellipse, label="分类ID", fillcolor=white];
+    cat_name [shape=ellipse, label="分类名称", fillcolor=white];
+
+    /* 关系：区域 包含 学校 */
+    R1 [shape=diamond, label="包含", fillcolor="#e3f2fd"];
+    Region -> R1 [label="1", len=0.3];
+    R1 -> School [label="n", len=0.3];
+
+    /* ============================================================
+       第三层：食堂、食材
+       ============================================================ */
+    { rank=same;
+      Canteen [label="食堂"];
+      Ingredient [label="食材"];
+    }
+
+    Canteen -> can_id [len=0.01];
+    Canteen -> can_schid [len=0.01];
+    Canteen -> can_name [len=0.01];
+    Canteen -> can_type [len=0.01];
+    can_id [shape=ellipse, label="食堂ID", fillcolor=white];
+    can_schid [shape=ellipse, label="学校ID", fillcolor=white];
+    can_name [shape=ellipse, label="食堂名称", fillcolor=white];
+    can_type [shape=ellipse, label="食堂类型", fillcolor=white];
+
+    Ingredient -> ing_id [len=0.01];
+    Ingredient -> ing_catid [len=0.01];
+    Ingredient -> ing_name [len=0.01];
+    Ingredient -> ing_unit [len=0.01];
+    ing_id [shape=ellipse, label="食材ID", fillcolor=white];
+    ing_catid [shape=ellipse, label="分类ID", fillcolor=white];
+    ing_name [shape=ellipse, label="食材名称", fillcolor=white];
+    ing_unit [shape=ellipse, label="计量单位", fillcolor=white];
+
+    R2 [shape=diamond, label="拥有", fillcolor="#e3f2fd"];
+    School -> R2 [label="1", len=0.3];
+    R2 -> Canteen [label="n", len=0.3];
+
+    R3 [shape=diamond, label="分类", fillcolor="#e3f2fd"];
+    IngCat -> R3 [label="1", len=0.3];
+    R3 -> Ingredient [label="n", len=0.3];
+
+    /* ============================================================
+       三元关系：供应商 + 食堂 + 食材 供应（含关系属性）
+       ============================================================ */
+    R_supply [shape=diamond, label="供应", fillcolor="#e3f2fd"];
+    Supplier -> R_supply [label="n", len=0.4];
+    Canteen -> R_supply [label="n", len=0.4];
+    R_supply -> Ingredient [label="m", len=0.4];
+
+    sup_price_attr [shape=ellipse, label="供应单价", style=dashed, fillcolor=white];
+    sup_primary_attr [shape=ellipse, label="是否主供", style=dashed, fillcolor=white];
+    R_supply -> sup_price_attr [style=dashed, len=0.15];
+    R_supply -> sup_primary_attr [style=dashed, len=0.15];
+
+    /* ============================================================
+       第四层：采购订单、食材价格
+       ============================================================ */
+    { rank=same;
+      Purchase [label="采购订单"];
+      PriceRec [label="食材价格"];
+    }
+
+    Purchase -> pur_id [len=0.01];
+    Purchase -> pur_schid [len=0.01];
+    Purchase -> pur_canid [len=0.01];
+    Purchase -> pur_supid [len=0.01];
+    Purchase -> pur_date [len=0.01];
+    Purchase -> pur_total [len=0.01];
+    pur_id [shape=ellipse, label="采购ID", fillcolor=white];
+    pur_schid [shape=ellipse, label="学校ID", fillcolor=white];
+    pur_canid [shape=ellipse, label="食堂ID", fillcolor=white];
+    pur_supid [shape=ellipse, label="供应商ID", fillcolor=white];
+    pur_date [shape=ellipse, label="采购日期", fillcolor=white];
+    pur_total [shape=ellipse, label="总金额", fillcolor=white];
+
+    PriceRec -> pr_id [len=0.01];
+    PriceRec -> pr_ingid [len=0.01];
+    PriceRec -> pr_date [len=0.01];
+    PriceRec -> pr_price [len=0.01];
+    pr_id [shape=ellipse, label="记录ID", fillcolor=white];
+    pr_ingid [shape=ellipse, label="食材ID", fillcolor=white];
+    pr_date [shape=ellipse, label="记录日期", fillcolor=white];
+    pr_price [shape=ellipse, label="价格", fillcolor=white];
+
+    R4 [shape=diamond, label="供货", fillcolor="#e3f2fd"];
+    Supplier -> R4 [label="1", len=0.3];
+    R4 -> Purchase [label="n", len=0.3];
+
+    R5 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    Canteen -> R5 [label="1", len=0.3];
+    R5 -> Purchase [label="n", len=0.3];
+
+    /* 关系：采购订单 n:m 采购 食材（含关系属性） */
+    R_purchase [shape=diamond, label="采购", fillcolor="#e3f2fd"];
+    Purchase -> R_purchase [label="n", len=0.3];
+    R_purchase -> Ingredient [label="m", len=0.3];
+
+    pur_qty [shape=ellipse, label="数量", style=dashed, fillcolor=white];
+    pur_up [shape=ellipse, label="单价", style=dashed, fillcolor=white];
+    pur_amt [shape=ellipse, label="金额", style=dashed, fillcolor=white];
+    R_purchase -> pur_qty [style=dashed, len=0.15];
+    R_purchase -> pur_up [style=dashed, len=0.15];
+    R_purchase -> pur_amt [style=dashed, len=0.15];
+
+    R6 [shape=diamond, label="波动", fillcolor="#e3f2fd"];
+    Ingredient -> R6 [label="1", len=0.3];
+    R6 -> PriceRec [label="n", len=0.3];
+
+    /* ============================================================
+       第五层：日管控、周排查、月调度
+       ============================================================ */
+    { rank=same;
+      DailyCtrl [label="日管控"];
+      WeeklyInsp [label="周排查"];
+      MonthlyDisp [label="月调度"];
+    }
+
+    DailyCtrl -> dc_id [len=0.01];
+    DailyCtrl -> dc_schid [len=0.01];
+    DailyCtrl -> dc_canid [len=0.01];
+    DailyCtrl -> dc_date [len=0.01];
+    DailyCtrl -> dc_total [len=0.01];
+    DailyCtrl -> dc_pending [len=0.01];
+    dc_id [shape=ellipse, label="记录ID", fillcolor=white];
+    dc_schid [shape=ellipse, label="学校ID", fillcolor=white];
+    dc_canid [shape=ellipse, label="食堂ID", fillcolor=white];
+    dc_date [shape=ellipse, label="管控日期", fillcolor=white];
+    dc_total [shape=ellipse, label="排查总数", fillcolor=white];
+    dc_pending [shape=ellipse, label="待整改数", fillcolor=white];
+
+    WeeklyInsp -> wi_id [len=0.01];
+    WeeklyInsp -> wi_schid [len=0.01];
+    WeeklyInsp -> wi_week [len=0.01];
+    WeeklyInsp -> wi_qual [len=0.01];
+    WeeklyInsp -> wi_yel [len=0.01];
+    WeeklyInsp -> wi_bas [len=0.01];
+    wi_id [shape=ellipse, label="记录ID", fillcolor=white];
+    wi_schid [shape=ellipse, label="学校ID", fillcolor=white];
+    wi_week [shape=ellipse, label="排查周次", fillcolor=white];
+    wi_qual [shape=ellipse, label="合格数", fillcolor=white];
+    wi_yel [shape=ellipse, label="黄线问题", fillcolor=white];
+    wi_bas [shape=ellipse, label="基础问题", fillcolor=white];
+
+    MonthlyDisp -> md_id [len=0.01];
+    MonthlyDisp -> md_schid [len=0.01];
+    MonthlyDisp -> md_canid [len=0.01];
+    MonthlyDisp -> md_month [len=0.01];
+    MonthlyDisp -> md_name [len=0.01];
+    MonthlyDisp -> md_status [len=0.01];
+    md_id [shape=ellipse, label="记录ID", fillcolor=white];
+    md_schid [shape=ellipse, label="学校ID", fillcolor=white];
+    md_canid [shape=ellipse, label="食堂ID", fillcolor=white];
+    md_month [shape=ellipse, label="月份", fillcolor=white];
+    md_name [shape=ellipse, label="调度名称", fillcolor=white];
+    md_status [shape=ellipse, label="状态", fillcolor=white];
+
+    R7 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    School -> R7 [label="1", len=0.3];
+    R7 -> DailyCtrl [label="n", len=0.3];
+
+    R8 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    Canteen -> R8 [label="1", len=0.3];
+    R8 -> DailyCtrl [label="n", len=0.3];
+
+    R9 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    School -> R9 [label="1", len=0.3];
+    R9 -> WeeklyInsp [label="n", len=0.3];
+
+    R10 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    School -> R10 [label="1", len=0.3];
+    R10 -> MonthlyDisp [label="n", len=0.3];
+
+    R11 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    Canteen -> R11 [label="1", len=0.3];
+    R11 -> MonthlyDisp [label="n", len=0.3];
+
+    /* ============================================================
+       第六层：订餐记录、食材验收、师生评价、管控明细
+       ============================================================ */
+    { rank=same;
+      Order [label="订餐记录"];
+      IngAccept [label="食材验收"];
+      Evaluation [label="师生评价"];
+      DCItem [label="管控明细"];
+    }
+
+    Order -> ord_id [len=0.01];
+    Order -> ord_schid [len=0.01];
+    Order -> ord_canid [len=0.01];
+    Order -> ord_date [len=0.01];
+    Order -> ord_total [len=0.01];
+    Order -> ord_amt [len=0.01];
+    ord_id [shape=ellipse, label="记录ID", fillcolor=white];
+    ord_schid [shape=ellipse, label="学校ID", fillcolor=white];
+    ord_canid [shape=ellipse, label="食堂ID", fillcolor=white];
+    ord_date [shape=ellipse, label="订餐日期", fillcolor=white];
+    ord_total [shape=ellipse, label="总订餐数", fillcolor=white];
+    ord_amt [shape=ellipse, label="总金额", fillcolor=white];
+
+    IngAccept -> ia_id [len=0.01];
+    IngAccept -> ia_schid [len=0.01];
+    IngAccept -> ia_canid [len=0.01];
+    IngAccept -> ia_ingid [len=0.01];
+    IngAccept -> ia_date [len=0.01];
+    IngAccept -> ia_qual [len=0.01];
+    ia_id [shape=ellipse, label="记录ID", fillcolor=white];
+    ia_schid [shape=ellipse, label="学校ID", fillcolor=white];
+    ia_canid [shape=ellipse, label="食堂ID", fillcolor=white];
+    ia_ingid [shape=ellipse, label="食材ID", fillcolor=white];
+    ia_date [shape=ellipse, label="验收日期", fillcolor=white];
+    ia_qual [shape=ellipse, label="质量状态", fillcolor=white];
+
+    Evaluation -> ev_id [len=0.01];
+    Evaluation -> ev_schid [len=0.01];
+    Evaluation -> ev_canid [len=0.01];
+    Evaluation -> ev_date [len=0.01];
+    Evaluation -> ev_score [len=0.01];
+    Evaluation -> ev_content [len=0.01];
+    ev_id [shape=ellipse, label="记录ID", fillcolor=white];
+    ev_schid [shape=ellipse, label="学校ID", fillcolor=white];
+    ev_canid [shape=ellipse, label="食堂ID", fillcolor=white];
+    ev_date [shape=ellipse, label="评价日期", fillcolor=white];
+    ev_score [shape=ellipse, label="评分", fillcolor=white];
+    ev_content [shape=ellipse, label="评价内容", fillcolor=white];
+
+    DCItem -> dci_id [len=0.01];
+    DCItem -> dci_dcid [len=0.01];
+    DCItem -> dci_name [len=0.01];
+    DCItem -> dci_result [len=0.01];
+    DCItem -> dci_rect [len=0.01];
+    dci_id [shape=ellipse, label="明细ID", fillcolor=white];
+    dci_dcid [shape=ellipse, label="管控ID", fillcolor=white];
+    dci_name [shape=ellipse, label="检查项", fillcolor=white];
+    dci_result [shape=ellipse, label="结果", fillcolor=white];
+    dci_rect [shape=ellipse, label="整改状态", fillcolor=white];
+
+    R12 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    School -> R12 [label="1", len=0.3];
+    R12 -> Order [label="n", len=0.3];
+
+    R13 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    Canteen -> R13 [label="1", len=0.3];
+    R13 -> Order [label="n", len=0.3];
+
+    R14 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    School -> R14 [label="1", len=0.3];
+    R14 -> IngAccept [label="n", len=0.3];
+
+    R15 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    Canteen -> R15 [label="1", len=0.3];
+    R15 -> IngAccept [label="n", len=0.3];
+
+    R16 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    School -> R16 [label="1", len=0.3];
+    R16 -> Evaluation [label="n", len=0.3];
+
+    R17 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    Canteen -> R17 [label="1", len=0.3];
+    R17 -> Evaluation [label="n", len=0.3];
+
+    R18 [shape=diamond, label="包含", fillcolor="#e3f2fd"];
+    DailyCtrl -> R18 [label="1", len=0.3];
+    R18 -> DCItem [label="n", len=0.3];
+
+    R19 [shape=diamond, label="验收", fillcolor="#e3f2fd"];
+    Ingredient -> R19 [label="1", len=0.3];
+    R19 -> IngAccept [label="n", len=0.3];
+
+    /* ============================================================
+       第七层：学生营养、消费记录
+       ============================================================ */
+    { rank=same;
+      StuNutri [label="学生营养"];
+      Consump [label="消费记录"];
+    }
+
+    StuNutri -> sn_id [len=0.01];
+    StuNutri -> sn_schid [len=0.01];
+    StuNutri -> sn_canid [len=0.01];
+    StuNutri -> sn_date [len=0.01];
+    StuNutri -> sn_cat [len=0.01];
+    StuNutri -> sn_intake [len=0.01];
+    sn_id [shape=ellipse, label="记录ID", fillcolor=white];
+    sn_schid [shape=ellipse, label="学校ID", fillcolor=white];
+    sn_canid [shape=ellipse, label="食堂ID", fillcolor=white];
+    sn_date [shape=ellipse, label="记录日期", fillcolor=white];
+    sn_cat [shape=ellipse, label="营养类别", fillcolor=white];
+    sn_intake [shape=ellipse, label="摄入量", fillcolor=white];
+
+    Consump -> cr_id [len=0.01];
+    Consump -> cr_schid [len=0.01];
+    Consump -> cr_canid [len=0.01];
+    Consump -> cr_month [len=0.01];
+    Consump -> cr_amt [len=0.01];
+    cr_id [shape=ellipse, label="记录ID", fillcolor=white];
+    cr_schid [shape=ellipse, label="学校ID", fillcolor=white];
+    cr_canid [shape=ellipse, label="食堂ID", fillcolor=white];
+    cr_month [shape=ellipse, label="月份", fillcolor=white];
+    cr_amt [shape=ellipse, label="消费金额", fillcolor=white];
+
+    R20 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    School -> R20 [label="1", len=0.3];
+    R20 -> StuNutri [label="n", len=0.3];
+
+    R21 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    Canteen -> R21 [label="1", len=0.3];
+    R21 -> StuNutri [label="n", len=0.3];
+
+    R22 [shape=diamond, label="摄入", fillcolor="#e3f2fd"];
+    Ingredient -> R22 [label="1", len=0.3];
+    R22 -> StuNutri [label="n", len=0.3];
+
+    R23 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    School -> R23 [label="1", len=0.3];
+    R23 -> Consump [label="n", len=0.3];
+
+    R24 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
+    Canteen -> R24 [label="1", len=0.3];
+    R24 -> Consump [label="n", len=0.3];
+}

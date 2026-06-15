@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/../includes/auth.php';
 requireLogin();
 $pageTitle = '价格管理';
 $activeMenu = 'prices';

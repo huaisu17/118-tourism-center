@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/../includes/auth.php';
 
 if (isLoggedIn()) {
     redirect('index.php');
@@ -56,9 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="password" name="password" class="form-control" placeholder="请输入密码" required>
         </div>
         <button type="submit" class="btn btn-primary btn-login">登 录</button>
-        <div class="mt-3 text-center text-muted small">
-            默认管理员: admin / admin123
-        </div>
     </form>
 </div>
 </body>
