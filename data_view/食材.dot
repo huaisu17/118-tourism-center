@@ -1,0 +1,18 @@
+digraph ER_Ingredient {
+    graph [fontname="Microsoft YaHei", fontsize=12, rankdir=TB,
+           bgcolor=white, nodesep=0.4, ranksep=0.8];
+    node [fontname="Microsoft YaHei", fontsize=10,
+          shape=rectangle, style=filled, fillcolor="#f8f9fa",
+          width=0, height=0, margin="0.15,0.08"];
+    edge [fontname="Microsoft YaHei", fontsize=9,
+          arrowhead=none, color="#333333"];
+
+    Ingredient [label="食材"];
+    ing_id [shape=ellipse, label="食材ID", fillcolor=white];
+    ing_name [shape=ellipse, label="食材名称", fillcolor=white];
+    ing_unit [shape=ellipse, label="计量单位", fillcolor=white];
+
+    Ingredient -> ing_id [len=0.01];
+    Ingredient -> ing_name [len=0.01];
+    Ingredient -> ing_unit [len=0.01];
+}

@@ -1,0 +1,18 @@
+digraph ER_Purchase {
+    graph [fontname="Microsoft YaHei", fontsize=12, rankdir=TB,
+           bgcolor=white, nodesep=0.4, ranksep=0.8];
+    node [fontname="Microsoft YaHei", fontsize=10,
+          shape=rectangle, style=filled, fillcolor="#f8f9fa",
+          width=0, height=0, margin="0.15,0.08"];
+    edge [fontname="Microsoft YaHei", fontsize=9,
+          arrowhead=none, color="#333333"];
+
+    Purchase [label="采购订单"];
+    pur_id [shape=ellipse, label="采购ID", fillcolor=white];
+    pur_date [shape=ellipse, label="采购日期", fillcolor=white];
+    pur_total [shape=ellipse, label="总金额", fillcolor=white];
+
+    Purchase -> pur_id [len=0.01];
+    Purchase -> pur_date [len=0.01];
+    Purchase -> pur_total [len=0.01];
+}

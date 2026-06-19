@@ -1,0 +1,18 @@
+digraph ER_Supplier {
+    graph [fontname="Microsoft YaHei", fontsize=12, rankdir=TB,
+           bgcolor=white, nodesep=0.4, ranksep=0.8];
+    node [fontname="Microsoft YaHei", fontsize=10,
+          shape=rectangle, style=filled, fillcolor="#f8f9fa",
+          width=0, height=0, margin="0.15,0.08"];
+    edge [fontname="Microsoft YaHei", fontsize=9,
+          arrowhead=none, color="#333333"];
+
+    Supplier [label="供应商"];
+    sup_id [shape=ellipse, label="供应商ID", fillcolor=white];
+    sup_name [shape=ellipse, label="供应商名称", fillcolor=white];
+    sup_score [shape=ellipse, label="综合评分", fillcolor=white];
+
+    Supplier -> sup_id [len=0.01];
+    Supplier -> sup_name [len=0.01];
+    Supplier -> sup_score [len=0.01];
+}

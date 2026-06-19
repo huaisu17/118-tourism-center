@@ -1,0 +1,18 @@
+digraph ER_Canteen {
+    graph [fontname="Microsoft YaHei", fontsize=12, rankdir=TB,
+           bgcolor=white, nodesep=0.4, ranksep=0.8];
+    node [fontname="Microsoft YaHei", fontsize=10,
+          shape=rectangle, style=filled, fillcolor="#f8f9fa",
+          width=0, height=0, margin="0.15,0.08"];
+    edge [fontname="Microsoft YaHei", fontsize=9,
+          arrowhead=none, color="#333333"];
+
+    Canteen [label="食堂"];
+    can_id [shape=ellipse, label="食堂ID", fillcolor=white];
+    can_name [shape=ellipse, label="食堂名称", fillcolor=white];
+    can_type [shape=ellipse, label="食堂类型", fillcolor=white];
+
+    Canteen -> can_id [len=0.01];
+    Canteen -> can_name [len=0.01];
+    Canteen -> can_type [len=0.01];
+}

@@ -1,0 +1,16 @@
+digraph ER_IngCat {
+    graph [fontname="Microsoft YaHei", fontsize=12, rankdir=TB,
+           bgcolor=white, nodesep=0.4, ranksep=0.8];
+    node [fontname="Microsoft YaHei", fontsize=10,
+          shape=rectangle, style=filled, fillcolor="#f8f9fa",
+          width=0, height=0, margin="0.15,0.08"];
+    edge [fontname="Microsoft YaHei", fontsize=9,
+          arrowhead=none, color="#333333"];
+
+    IngCat [label="食材分类"];
+    cat_id [shape=ellipse, label="分类ID", fillcolor=white];
+    cat_name [shape=ellipse, label="分类名称", fillcolor=white];
+
+    IngCat -> cat_id [len=0.01];
+    IngCat -> cat_name [len=0.01];
+}

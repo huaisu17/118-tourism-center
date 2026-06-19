@@ -8,185 +8,68 @@ digraph ER {
           arrowhead=none, color="#333333"];
 
     /* ============================================================
-       第一层：区域
-       ============================================================ */
-    Region [label="区域"];
-
-    /* ============================================================
-       第二层：学校、供应商、食材分类
+       第一层：基础档案实体
        ============================================================ */
     { rank=same;
-      School [label="学校"];
+      Canteen [label="食堂"];
       Supplier [label="供应商"];
       IngCat [label="食材分类"];
     }
 
     /* ============================================================
-       第三层：食堂、食材
+       第二层：食材
        ============================================================ */
-    { rank=same;
-      Canteen [label="食堂"];
-      Ingredient [label="食材"];
-    }
+    Ingredient [label="食材"];
 
     /* ============================================================
-       第四层：采购订单、食材价格
+       第三层：采购订单、采购明细
        ============================================================ */
     { rank=same;
       Purchase [label="采购订单"];
-      PriceRec [label="食材价格"];
+      PurItem [label="采购明细"];
     }
 
     /* ============================================================
-       第五层：日管控、周排查、月调度
+       第四层：业务记录
        ============================================================ */
-    { rank=same;
-      DailyCtrl [label="日管控"];
-      WeeklyInsp [label="周排查"];
-      MonthlyDisp [label="月调度"];
-    }
-
-    /* ============================================================
-       第六层：订餐记录、食材验收、师生评价、管控明细
-       ============================================================ */
-    { rank=same;
-      Order [label="订餐记录"];
-      IngAccept [label="食材验收"];
-      Evaluation [label="师生评价"];
-      DCItem [label="管控明细"];
-    }
-
-    /* ============================================================
-       第七层：学生营养、消费记录
-       ============================================================ */
-    { rank=same;
-      StuNutri [label="学生营养"];
-      Consump [label="消费记录"];
-    }
+    IngAccept [label="食材验收"];
 
     /* ============================================================
        关系定义
        ============================================================ */
 
-    /* 区域 包含 学校 */
-    R1 [shape=diamond, label="包含", fillcolor="#e3f2fd"];
-    Region -> R1 [label="1", len=0.3];
-    R1 -> School [label="n", len=0.3];
-
-    /* 学校 拥有 食堂 */
-    R2 [shape=diamond, label="拥有", fillcolor="#e3f2fd"];
-    School -> R2 [label="1", len=0.3];
-    R2 -> Canteen [label="n", len=0.3];
-
     /* 食材分类 分类 食材 */
-    R3 [shape=diamond, label="分类", fillcolor="#e3f2fd"];
-    IngCat -> R3 [label="1", len=0.3];
-    R3 -> Ingredient [label="n", len=0.3];
+    R1 [shape=diamond, label="分类", fillcolor="#e3f2fd"];
+    IngCat -> R1 [label="1", len=0.3];
+    R1 -> Ingredient [label="n", len=0.3];
 
-    /* 三元关系：供应商 + 食堂 + 食材 供应 */
-    R_supply [shape=diamond, label="供应", fillcolor="#e3f2fd"];
-    Supplier -> R_supply [label="n", len=0.4];
-    Canteen -> R_supply [label="n", len=0.4];
-    R_supply -> Ingredient [label="m", len=0.4];
+    /* 食堂 采购 采购订单 */
+    R2 [shape=diamond, label="采购", fillcolor="#e3f2fd"];
+    Canteen -> R2 [label="1", len=0.3];
+    R2 -> Purchase [label="n", len=0.3];
 
     /* 供应商 供货 采购订单 */
-    R4 [shape=diamond, label="供货", fillcolor="#e3f2fd"];
-    Supplier -> R4 [label="1", len=0.3];
-    R4 -> Purchase [label="n", len=0.3];
+    R3 [shape=diamond, label="供货", fillcolor="#e3f2fd"];
+    Supplier -> R3 [label="1", len=0.3];
+    R3 -> Purchase [label="n", len=0.3];
 
-    /* 食堂 产生 采购订单 */
-    R5 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    Canteen -> R5 [label="1", len=0.3];
-    R5 -> Purchase [label="n", len=0.3];
+    /* 采购订单 包含 采购明细 */
+    R4 [shape=diamond, label="包含", fillcolor="#e3f2fd"];
+    Purchase -> R4 [label="1", len=0.3];
+    R4 -> PurItem [label="n", len=0.3];
 
-    /* 采购订单 采购 食材 */
-    R_purchase [shape=diamond, label="采购", fillcolor="#e3f2fd"];
-    Purchase -> R_purchase [label="n", len=0.3];
-    R_purchase -> Ingredient [label="m", len=0.3];
+    /* 食材 被采购 采购明细 */
+    R5 [shape=diamond, label="被采购", fillcolor="#e3f2fd"];
+    Ingredient -> R5 [label="1", len=0.3];
+    R5 -> PurItem [label="n", len=0.3];
 
-    /* 食材 波动 食材价格 */
-    R6 [shape=diamond, label="波动", fillcolor="#e3f2fd"];
-    Ingredient -> R6 [label="1", len=0.3];
-    R6 -> PriceRec [label="n", len=0.3];
+    /* 食堂 验收 食材验收 */
+    R6 [shape=diamond, label="验收", fillcolor="#e3f2fd"];
+    Canteen -> R6 [label="1", len=0.3];
+    R6 -> IngAccept [label="n", len=0.3];
 
-    /* 学校/食堂 产生 日管控 */
-    R7 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    School -> R7 [label="1", len=0.3];
-    R7 -> DailyCtrl [label="n", len=0.3];
-
-    R8 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    Canteen -> R8 [label="1", len=0.3];
-    R8 -> DailyCtrl [label="n", len=0.3];
-
-    /* 日管控 包含 管控明细 */
-    R9 [shape=diamond, label="包含", fillcolor="#e3f2fd"];
-    DailyCtrl -> R9 [label="1", len=0.3];
-    R9 -> DCItem [label="n", len=0.3];
-
-    /* 学校 产生 周排查 */
-    R10 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    School -> R10 [label="1", len=0.3];
-    R10 -> WeeklyInsp [label="n", len=0.3];
-
-    /* 学校/食堂 产生 月调度 */
-    R11 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    School -> R11 [label="1", len=0.3];
-    R11 -> MonthlyDisp [label="n", len=0.3];
-
-    R12 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    Canteen -> R12 [label="1", len=0.3];
-    R12 -> MonthlyDisp [label="n", len=0.3];
-
-    /* 学校/食堂 产生 订餐记录 */
-    R13 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    School -> R13 [label="1", len=0.3];
-    R13 -> Order [label="n", len=0.3];
-
-    R14 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    Canteen -> R14 [label="1", len=0.3];
-    R14 -> Order [label="n", len=0.3];
-
-    /* 学校/食堂 产生 食材验收；食材 验收 食材验收 */
-    R15 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    School -> R15 [label="1", len=0.3];
-    R15 -> IngAccept [label="n", len=0.3];
-
-    R16 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    Canteen -> R16 [label="1", len=0.3];
-    R16 -> IngAccept [label="n", len=0.3];
-
-    R17 [shape=diamond, label="验收", fillcolor="#e3f2fd"];
-    Ingredient -> R17 [label="1", len=0.3];
-    R17 -> IngAccept [label="n", len=0.3];
-
-    /* 学校/食堂 产生 师生评价 */
-    R18 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    School -> R18 [label="1", len=0.3];
-    R18 -> Evaluation [label="n", len=0.3];
-
-    R19 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    Canteen -> R19 [label="1", len=0.3];
-    R19 -> Evaluation [label="n", len=0.3];
-
-    /* 学校/食堂 产生 学生营养；食材 摄入 学生营养 */
-    R20 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    School -> R20 [label="1", len=0.3];
-    R20 -> StuNutri [label="n", len=0.3];
-
-    R21 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    Canteen -> R21 [label="1", len=0.3];
-    R21 -> StuNutri [label="n", len=0.3];
-
-    R22 [shape=diamond, label="摄入", fillcolor="#e3f2fd"];
-    Ingredient -> R22 [label="1", len=0.3];
-    R22 -> StuNutri [label="n", len=0.3];
-
-    /* 学校/食堂 产生 消费记录 */
-    R23 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    School -> R23 [label="1", len=0.3];
-    R23 -> Consump [label="n", len=0.3];
-
-    R24 [shape=diamond, label="产生", fillcolor="#e3f2fd"];
-    Canteen -> R24 [label="1", len=0.3];
-    R24 -> Consump [label="n", len=0.3];
+    /* 食材 被验收 食材验收 */
+    R7 [shape=diamond, label="被验收", fillcolor="#e3f2fd"];
+    Ingredient -> R7 [label="1", len=0.3];
+    R7 -> IngAccept [label="n", len=0.3];
 }

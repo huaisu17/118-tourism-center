@@ -1,0 +1,18 @@
+digraph ER_PurItem {
+    graph [fontname="Microsoft YaHei", fontsize=12, rankdir=TB,
+           bgcolor=white, nodesep=0.4, ranksep=0.8];
+    node [fontname="Microsoft YaHei", fontsize=10,
+          shape=rectangle, style=filled, fillcolor="#f8f9fa",
+          width=0, height=0, margin="0.15,0.08"];
+    edge [fontname="Microsoft YaHei", fontsize=9,
+          arrowhead=none, color="#333333"];
+
+    PurItem [label="采购明细"];
+    pi_id [shape=ellipse, label="明细ID", fillcolor=white];
+    pi_qty [shape=ellipse, label="数量", fillcolor=white];
+    pi_up [shape=ellipse, label="单价", fillcolor=white];
+
+    PurItem -> pi_id [len=0.01];
+    PurItem -> pi_qty [len=0.01];
+    PurItem -> pi_up [len=0.01];
+}
